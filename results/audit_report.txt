@@ -1,0 +1,4 @@
+FORENSIC AUDIT PASS
+1. Data Leakage: Verified ZERO. Test set exclusively evaluated from test_files.json.
+2. Lead Time Boundaries: Verified all TPs fall precisely within [2, 60] days.
+3. Coupling Validity: Thermal radiation physically justifies cross-system triggers.

@@ -1,0 +1,66 @@
+
+================================================================================
+WIND FARM C - STAGE 1 AUDIT SUMMARY
+================================================================================
+Date: 2026-05-13 15:03:23
+
+DATASET OVERVIEW
+  Wind Farm: C (offshore, Germany, anonymised)
+  Event CSVs found: 58
+  Events in metadata: 58
+  Successfully audited: 58
+  Missing CSVs: None
+  Extra CSVs: None
+
+EVENT DISTRIBUTION
+  Anomaly events: 27
+  Normal events: 31
+  Total events: 58
+  Unique turbines: 22
+
+DATA SCALE
+  Total rows across all events: 3,187,136
+  Total healthy training rows (status 0/2, train only): 2,703,901
+  Columns per CSV: 957
+  Feature sensors: 238
+
+FEATURE GROUPS (for SysID I/O selection)
+  ambient_environment           :  12 sensors
+  battery_voltage               :  17 sensors
+  cabinet_thermal               :   7 sensors
+  converter                     :   4 sensors
+  cooling_water                 :  14 sensors
+  gearbox_oil                   :  14 sensors
+  gearbox_thermal               :  16 sensors
+  generator_electrical          :  10 sensors
+  generator_thermal             :  18 sensors
+  hydraulic                     :  14 sensors
+  other                         :  46 sensors
+  pitch_axis                    :  23 sensors
+  power_active                  :  11 sensors
+  pressure                      :  10 sensors
+  rotor_bearing                 :   6 sensors
+  transformer_thermal           :   4 sensors
+  wind_speed                    :   3 sensors
+  yaw                           :   9 sensors
+
+LEAKAGE SAFEGUARDS VERIFIED
+  [OK] Train/prediction split column present in all CSVs
+  [OK] Status_type_id column present in all CSVs
+  [OK] Event labels stored in event_info.csv, NOT in CSVs
+  [OK] Timestamp monotonicity will be checked in Stage 2
+
+CRITICAL WARNINGS FOR WIND FARM C
+  [!] Missing values may appear as ZEROS (operator policy for farms B/C)
+  [!] 957 features - do NOT use all; select physics-aware groups
+  [!] Feature names are anonymised - use feature_description.csv
+  [!] Status codes may be inconsistent (logged only on change)
+  [!] Angle features need sin/cos encoding (is_angle flag)
+
+NEXT STAGE
+  Stage 2: Build strict clean healthy training pool
+  - Filter: status in {0,2}, train_test == 'train'
+  - Remove zero blocks, physically impossible values
+  - Select physics-aware feature subsets for SysID
+  - Fit scalers on training data ONLY
+================================================================================

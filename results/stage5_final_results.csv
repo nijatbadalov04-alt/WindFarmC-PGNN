@@ -1,0 +1,59 @@
+event_id,label,asset_id,description,detected,lead_days,false_positive
+55,anomaly,50,Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade control system,True,57.6,
+81,anomaly,38,"Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filter Supply ",True,58.2,
+47,anomaly,21,"Failure due to Rotorbrake and Hydraulic problemes - Hydraulic pump A disabeld, 2h later turbine back in production - Analysis indicates a longer anomaly in temp_hydraulic_oil_tank_1_average until 15.01.2024 which is neither confirmed nor refuted.",True,47.5,
+12,anomaly,2,"10115 : Oil level error, two-pump mode + Oil Leakage Gear Oil Supply + 12019: Rotor brake B cannot be closed + P20_yaw carbon brush damaged",True,51.7,
+4,anomaly,34,23020 : Axis 3 not ready-to-operate,True,58.2,
+18,anomaly,34,We had some failures (störung 24VAC Versorgung Rotorbremse) on the 16th in the afternoon. From 17th onwards a longer standstill where we don't know the root cause to. ,True,49.2,
+28,anomaly,52,P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic system,True,58.2,
+39,anomaly,52,15004 : Safety chain relay open + 93005 : Gear oil cooler bypass valve,True,57.8,
+66,anomaly,12,"Pitchfailure - defect Beckhoffcard, Axis 2, rectified on 23/01 - Anomalie liegt aber länger an als der Fehler, Batterien waren ok",True,58.4,
+15,anomaly,12,Randomn small failures regarding pitch resulting in a longer standstill due to a defect pitch encoder (26/02),True,59.8,
+78,anomaly,15,P20_Grounding role brake disc + P20_cover-lightning-main-cabinet-hub,True,53.9,
+79,anomaly,16,Communication fault BK1120 in NC300,True,57.5,
+30,anomaly,16,Pitch failure - defect fan on pitch motor,True,55.1,
+33,anomaly,43,P20_Blade3_Grease Collector missing,True,42.8,
+11,anomaly,43,P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabinet Caps missing,True,58.2,
+44,anomaly,44,Valve in water cooling system was left in wrong position after maintenance actions on 05-08-2020,True,58.5,
+49,anomaly,33,Failure 2023-04-05 03:30 - defective coupling between gear oil pump and motor,True,50.2,
+31,anomaly,35,Communication and Pitchfailure - slip ring and Beckhoff card,True,48.9,
+67,anomaly,35,Turbine has some issues with overpressure on the main transformer,True,57.2,
+9,anomaly,55,PENDING19_PREV_YAW_Grease pump defective,True,52.4,
+91,anomaly,42,23020 : Axis 3 not ready-to-operate,True,16.3,
+5,anomaly,32,WEC in failure - current measurement own consumption,True,34.8,
+90,anomaly,56,COMMUNICATION FAULT BK1120 IN NC300 A2,True,54.6,
+70,anomaly,23,"21002 : Axis 1 DC-link voltage low, batt",True,56.3,
+35,anomaly,53,"Turbine had several short standstills (max 8min) with failure ""Schwingungen Umrichter Drehmomenten Level 1""",True,45.8,
+16,anomaly,53,WEC in failure - hub battery charger defect,True,49.2,
+76,anomaly,53,WEC in failure with pitch battery issues - rewiring,True,58.3,
+8,normal,50,,,,True
+85,normal,14,,,,False
+6,normal,38,,,,True
+62,normal,21,,,,False
+36,normal,2,,,,True
+56,normal,34,,,,True
+94,normal,34,,,,False
+54,normal,52,,,,False
+43,normal,52,,,,True
+50,normal,12,,,,False
+64,normal,15,,,,False
+46,normal,16,,,,False
+65,normal,16,,,,True
+61,normal,43,,,,False
+93,normal,43,,,,True
+75,normal,44,,,,False
+41,normal,33,,,,False
+58,normal,35,,,,False
+48,normal,35,,,,True
+88,normal,55,,,,True
+57,normal,55,,,,False
+32,normal,42,,,,False
+89,normal,5,,,,False
+59,normal,32,,,,True
+63,normal,56,,,,True
+80,normal,23,,,,True
+37,normal,23,,,,False
+29,normal,13,,,,False
+1,normal,53,,,,False
+20,normal,53,,,,False
+60,normal,53,,,,False

@@ -1,0 +1,15 @@
+{
+    "n_lags": 3,
+    "targets": {
+        "gearbox": "sensor_186_avg",
+        "transformer": "sensor_191_avg",
+        "hydraulic": "sensor_178_avg",
+        "generator": "sensor_173_avg",
+        "pitch": "sensor_62_avg"
+    },
+    "exogenous": [
+        "sensor_7_avg",
+        "sensor_144_avg",
+        "power_2_avg"
+    ]
+}

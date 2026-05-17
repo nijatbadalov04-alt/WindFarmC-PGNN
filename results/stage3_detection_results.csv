@@ -1,0 +1,59 @@
+event_id,label,asset_id,description,detected,lead_days,detecting_subsystem,false_positive,fp_subsystem
+55,anomaly,50,Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade control system,True,19.1,generator,,
+81,anomaly,38,"Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filter Supply ",True,19.2,transformer,,
+47,anomaly,21,"Failure due to Rotorbrake and Hydraulic problemes - Hydraulic pump A disabeld, 2h later turbine back in production - Analysis indicates a longer anomaly in temp_hydraulic_oil_tank_1_average until 15.01.2024 which is neither confirmed nor refuted.",False,,,,
+12,anomaly,2,"10115 : Oil level error, two-pump mode + Oil Leakage Gear Oil Supply + 12019: Rotor brake B cannot be closed + P20_yaw carbon brush damaged",True,49.7,generator,,
+4,anomaly,34,23020 : Axis 3 not ready-to-operate,True,59.7,hydraulic,,
+18,anomaly,34,We had some failures (störung 24VAC Versorgung Rotorbremse) on the 16th in the afternoon. From 17th onwards a longer standstill where we don't know the root cause to. ,True,35.2,transformer,,
+28,anomaly,52,P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic system,True,59.7,transformer,,
+39,anomaly,52,15004 : Safety chain relay open + 93005 : Gear oil cooler bypass valve,True,9.3,generator,,
+66,anomaly,12,"Pitchfailure - defect Beckhoffcard, Axis 2, rectified on 23/01 - Anomalie liegt aber länger an als der Fehler, Batterien waren ok",True,47.4,generator,,
+15,anomaly,12,Randomn small failures regarding pitch resulting in a longer standstill due to a defect pitch encoder (26/02),True,35.8,generator,,
+78,anomaly,15,P20_Grounding role brake disc + P20_cover-lightning-main-cabinet-hub,True,36.4,gearbox,,
+79,anomaly,16,Communication fault BK1120 in NC300,True,28.0,gearbox,,
+30,anomaly,16,Pitch failure - defect fan on pitch motor,True,48.1,transformer,,
+33,anomaly,43,P20_Blade3_Grease Collector missing,True,59.8,gearbox,,
+11,anomaly,43,P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabinet Caps missing,True,59.7,transformer,,
+44,anomaly,44,Valve in water cooling system was left in wrong position after maintenance actions on 05-08-2020,True,60.0,gearbox,,
+49,anomaly,33,Failure 2023-04-05 03:30 - defective coupling between gear oil pump and motor,True,59.7,gearbox,,
+31,anomaly,35,Communication and Pitchfailure - slip ring and Beckhoff card,True,59.9,hydraulic,,
+67,anomaly,35,Turbine has some issues with overpressure on the main transformer,True,33.2,generator,,
+9,anomaly,55,PENDING19_PREV_YAW_Grease pump defective,True,52.4,transformer,,
+91,anomaly,42,23020 : Axis 3 not ready-to-operate,True,54.8,transformer,,
+5,anomaly,32,WEC in failure - current measurement own consumption,True,59.8,hydraulic,,
+90,anomaly,56,COMMUNICATION FAULT BK1120 IN NC300 A2,True,55.6,hydraulic,,
+70,anomaly,23,"21002 : Axis 1 DC-link voltage low, batt",True,55.8,gearbox,,
+35,anomaly,53,"Turbine had several short standstills (max 8min) with failure ""Schwingungen Umrichter Drehmomenten Level 1""",True,49.3,generator,,
+16,anomaly,53,WEC in failure - hub battery charger defect,True,35.2,hydraulic,,
+76,anomaly,53,WEC in failure with pitch battery issues - rewiring,True,50.8,hydraulic,,
+8,normal,50,,,,,True,rotor_bearing
+85,normal,14,,,,,True,rotor_bearing
+6,normal,38,,,,,False,hydraulic
+62,normal,21,,,,,True,rotor_bearing
+36,normal,2,,,,,True,rotor_bearing
+56,normal,34,,,,,True,rotor_bearing
+94,normal,34,,,,,True,rotor_bearing
+54,normal,52,,,,,True,rotor_bearing
+43,normal,52,,,,,False,hydraulic
+50,normal,12,,,,,True,rotor_bearing
+64,normal,15,,,,,True,rotor_bearing
+46,normal,16,,,,,True,rotor_bearing
+65,normal,16,,,,,True,rotor_bearing
+61,normal,43,,,,,True,rotor_bearing
+93,normal,43,,,,,True,rotor_bearing
+75,normal,44,,,,,True,rotor_bearing
+41,normal,33,,,,,True,rotor_bearing
+58,normal,35,,,,,True,rotor_bearing
+48,normal,35,,,,,True,rotor_bearing
+88,normal,55,,,,,True,rotor_bearing
+57,normal,55,,,,,True,rotor_bearing
+32,normal,42,,,,,True,rotor_bearing
+89,normal,5,,,,,True,rotor_bearing
+59,normal,32,,,,,True,rotor_bearing
+63,normal,56,,,,,True,rotor_bearing
+80,normal,23,,,,,True,rotor_bearing
+37,normal,23,,,,,True,rotor_bearing
+29,normal,13,,,,,True,rotor_bearing
+1,normal,53,,,,,True,rotor_bearing
+20,normal,53,,,,,True,rotor_bearing
+60,normal,53,,,,,True,rotor_bearing

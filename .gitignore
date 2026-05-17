@@ -1,0 +1,15 @@
+# Prevent confidential SCADA data from being pushed
+data/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE environments
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
