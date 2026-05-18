@@ -1,0 +1,1380 @@
+﻿==============================================================================================================
+COMPREHENSIVE ROOT CAUSE TIMELINE ANALYSIS - ALL 27 TP EVENTS
+==============================================================================================================
+
+##############################################################################################################
+EVENT 4: 23020 : Axis 3 not ready-to-operate
+Detection: ensemble at 74d | 2 channels | Data: 196 days
+All channels: kci, ensemble
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.0       193d          -          -   0.9
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       3.0       150d       146d         0%   2.6
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       3.1       150d       146d         0%   2.6
+  sensor_45_avg             Fluid level oil container A2                  DOWN     2.6       150d          -          -   0.4
+  sensor_44_avg             Fluid level oil container A1                  DOWN     3.1       150d       148d         0%   0.9
+  sensor_191_avg            Oil temperature 1 main transformer            UP       3.4       149d       145d         1%   0.6
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     4.1       147d       146d        16%   2.5
+  sensor_14_avg             Battery discharge current axis 3              UP       4.3       147d       147d         2%   0.1
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       3.3       146d       145d         1%   0.1
+  sensor_62_avg             Temperature Axis 1                            UP       5.5       146d        58d        73%   3.9
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       3.3       146d       145d         1%   0.1
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     3.3       146d        82d         1%   0.1
+  sensor_167_avg            Air temp. transformer container               UP       3.1       146d         2d        33%   2.7
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.5       146d       145d         1%   0.3
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       7.2       106d        93d        82%   6.3
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  DOWN     3.9        43d        43d         7%   0.4
+  sensor_12_avg             Battery discharge current axis 1              DOWN     2.2        42d          -          -   0.0
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.6          -          -          -   0.3
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     1.9          -          -          -   0.2
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       1.7          -          -          -   0.5
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       1.8          -          -          -   0.4
+  sensor_47_avg             Mains frequency OS-side                       UP       1.8          -          -          -   0.5
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.6          -          -          -   0.3
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.6          -          -          -   0.3
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       1.7          -          -          -   0.5
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Electrical Bus            anomaly begins at 193d before failure <-- FIRST
+    Converter/Power           anomaly begins at 150d before failure
+    Gearbox                   anomaly begins at 150d before failure
+    Transformer               anomaly begins at 149d before failure
+    Pitch System              anomaly begins at 147d before failure
+    Hydraulic                 anomaly begins at 147d before failure
+    Battery                   anomaly begins at 147d before failure
+    Bearing                   anomaly begins at 146d before failure
+    Generator                 anomaly begins at 146d before failure
+    Cabinet/Cooling           anomaly begins at 146d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 147d, but Electrical Bus degrades first at 193d
+       -> Electrical Bus stressed 46d BEFORE Pitch System ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 5: WEC in failure - current measurement own consumption
+Detection: drift_24v at 79d | 7 channels | Data: 183 days
+All channels: hydraulic, generator, pitch, cabinet_temp, ensemble, drift_24v, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       2.2       161d          -          -   0.7
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       2.1       161d          -          -   0.6
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     6.1        93d        92d        14%   1.0
+  sensor_62_avg             Temperature Axis 1                            DOWN     4.5        93d        92d        35%   3.2
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     4.0        92d        92d         8%   1.0
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     3.5        92d        92d         6%   0.8
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     3.8        92d        92d         9%   1.5
+  sensor_167_avg            Air temp. transformer container               DOWN     4.0        92d        91d        34%   2.9
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     4.0        92d        92d         8%   1.0
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     4.7        92d        92d         2%   1.8
+  sensor_13_avg             Battery discharge current axis 2              UP      13.7        92d        91d         4%   2.0
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  DOWN     4.8        92d        92d         3%   0.2
+  sensor_45_avg             Fluid level oil container A2                  DOWN     3.4        92d        50d        14%   2.0
+  sensor_12_avg             Battery discharge current axis 1              UP      35.8        91d        91d         4%   1.2
+  sensor_14_avg             Battery discharge current axis 3              UP      12.8        91d        90d         3%   0.0
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     4.9        90d        78d        79%   3.7
+  sensor_25_avg             Current drain 24V nacelle                     UP      11.7        90d        80d       100%   7.5
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     3.4        88d         1d       100%   3.4
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.8        78d          -          -   1.8
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     3.7        51d        50d         7%   3.2
+  sensor_47_avg             Mains frequency OS-side                       DOWN     3.2        51d         1d       100%   3.2
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     3.8        51d        50d         7%   3.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     3.8        51d        50d         7%   3.2
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.6          -          -          -   0.6
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.0          -          -          -   0.3
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Converter/Power           anomaly begins at 161d before failure <-- FIRST
+    Pitch System              anomaly begins at 93d before failure
+    Generator                 anomaly begins at 93d before failure
+    Gearbox                   anomaly begins at 92d before failure
+    Transformer               anomaly begins at 92d before failure
+    Bearing                   anomaly begins at 92d before failure
+    Cabinet/Cooling           anomaly begins at 92d before failure
+    Hydraulic                 anomaly begins at 92d before failure
+    Battery                   anomaly begins at 92d before failure
+    Electrical Bus            anomaly begins at 90d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 90d, but Converter/Power degrades first at 161d
+       -> Converter/Power stressed 70d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 9: PENDING19_PREV_YAW_Grease pump defective
+Detection: ensemble at 70d | 3 channels | Data: 195 days
+All channels: battery_current, ensemble, drift_pump
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_191_avg            Oil temperature 1 main transformer            UP       4.3       185d        50d         9%   1.9
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.9       164d          -          -   0.1
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     2.8       164d          -          -   0.1
+  sensor_12_avg             Battery discharge current axis 1              UP       3.3       164d       164d         1%   0.1
+  sensor_14_avg             Battery discharge current axis 3              UP       3.3       164d       164d         1%   0.1
+  sensor_13_avg             Battery discharge current axis 2              UP       3.3       164d       164d         1%   0.1
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.9       164d          -          -   0.1
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       7.2        98d        94d        83%   5.0
+  sensor_45_avg             Fluid level oil container A2                  UP       4.6        96d        61d        52%   3.2
+  sensor_44_avg             Fluid level oil container A1                  UP       4.5        96d        60d        42%   2.9
+  sensor_167_avg            Air temp. transformer container               UP       5.7        94d        68d        55%   3.7
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     2.4        89d          -          -   0.1
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       5.6        84d        70d        65%   3.6
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     5.7        74d        72d        96%   4.6
+  sensor_87_avg             Motor current gear oil pump A                 UP       5.6        64d        64d         6%   0.1
+  sensor_62_avg             Temperature Axis 1                            UP       2.5        57d          -          -   1.4
+  sensor_47_avg             Mains frequency OS-side                       DOWN     3.2         0d         0d       100%   3.2
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.7          -          -          -   0.2
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.0          -          -          -   0.1
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       1.8          -          -          -   0.1
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     1.1          -          -          -   0.9
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.7          -          -          -   0.2
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.7          -          -          -   0.2
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     1.5          -          -          -   0.9
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       1.8          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Transformer               anomaly begins at 185d before failure <-- FIRST
+    Pitch System              anomaly begins at 164d before failure
+    Generator                 anomaly begins at 164d before failure
+    Bearing                   anomaly begins at 164d before failure
+    Battery                   anomaly begins at 164d before failure
+    Cabinet/Cooling           anomaly begins at 98d before failure
+    Gearbox                   anomaly begins at 96d before failure
+    Hydraulic                 anomaly begins at 84d before failure
+    Electrical Bus            anomaly begins at 0d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 84d, but Transformer degrades first at 185d
+       -> Transformer stressed 102d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 11: P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabinet Caps missing
+Detection: generator at 66d | 12 channels | Data: 196 days
+All channels: gearbox, transformer, hydraulic, generator, pitch, hpg, rotor_bearing, ensemble, drift_24v, drift_freq, drift_hvrp, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     2.6       190d          -          -   0.8
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     2.6       189d          -          -   0.8
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     5.1       141d       140d        10%   3.6
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     5.1       140d        34d        25%   2.2
+  sensor_186_avg            Gearbox oil temperature 1                     UP     111.2       140d        80d       100% 111.2
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     4.2       140d        55d        20%   3.6
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     4.8       140d        55d         9%   1.3
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     5.1       140d        34d        25%   2.2
+  sensor_62_avg             Temperature Axis 1                            DOWN     5.2       140d        34d        25%   1.7
+  sensor_45_avg             Fluid level oil container A2                  DOWN     5.4       140d        55d         9%   0.8
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       8.4       140d        55d        11%   0.1
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     6.4       140d        56d        12%   1.4
+  sensor_47_avg             Mains frequency OS-side                       UP       8.5       140d        55d        11%   0.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       8.4       140d        55d        11%   0.1
+  sensor_44_avg             Fluid level oil container A1                  DOWN     6.1       140d        55d        10%   0.1
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       8.4       140d        55d        11%   0.1
+  sensor_131_avg            Generator RMS current L2                      DOWN     2.5       129d          -          -   1.0
+  sensor_130_avg            Generator RMS current L1                      DOWN     2.5       129d          -          -   1.0
+  sensor_132_avg            Generator RMS current L3                      DOWN     2.5       129d          -          -   1.0
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     2.8        96d          -          -   1.6
+  sensor_167_avg            Air temp. transformer container               DOWN     3.5        96d        34d         6%   2.2
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     3.2        90d        34d         4%   0.8
+  sensor_75_avg             Maximum reactive power HV converter           UP       4.9        55d        34d         7%   0.3
+  sensor_12_avg             Battery discharge current axis 1              UP       3.8        28d        28d         2%   0.4
+  sensor_14_avg             Battery discharge current axis 3              UP       1.2          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Converter/Power           anomaly begins at 190d before failure <-- FIRST
+    Generator                 anomaly begins at 141d before failure
+    Gearbox                   anomaly begins at 140d before failure
+    Transformer               anomaly begins at 140d before failure
+    Electrical Bus            anomaly begins at 140d before failure
+    Bearing                   anomaly begins at 140d before failure
+    Pitch System              anomaly begins at 140d before failure
+    Hydraulic                 anomaly begins at 140d before failure
+    Cabinet/Cooling           anomaly begins at 96d before failure
+    Battery                   anomaly begins at 28d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 140d, but Converter/Power degrades first at 190d
+       -> Converter/Power stressed 50d BEFORE Pitch System ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Cabinet/Cooling) starts at 96d, but Converter/Power degrades first at 190d
+       -> Converter/Power stressed 93d BEFORE Cabinet/Cooling ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 12: 10115 : Oil level error, two-pump mode + Oil Leakage Gear Oil Supply + 12019: Rotor brake B cannot b
+Detection: hpg at 42d | 11 channels | Data: 195 days
+All channels: transformer, hydraulic, generator, pitch, hpg, rotor_bearing, ensemble, drift_24v, drift_filter, drift_freq, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_74_avg             Hydraulic oil tank level                      DOWN    49.8       118d        45d        41%   3.2
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP     125.4       110d        38d       100% 102.8
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP     128.9       110d        38d       100% 105.8
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       7.5       105d        62d        90%   6.0
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN    14.6       101d        44d        31%   2.5
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN    12.6       101d        44d        25%   2.4
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN    14.6       101d        44d        31%   2.5
+  sensor_25_avg             Current drain 24V nacelle                     DOWN    17.6        84d        38d        19%   2.8
+  sensor_44_avg             Fluid level oil container A1                  UP     433.1        61d        48d        72%   2.2
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       6.3        46d        36d        22%   3.4
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN    10.5        44d        44d        22%   0.4
+  sensor_191_avg            Oil temperature 1 main transformer            UP       4.0        44d        44d         7%   0.1
+  sensor_62_avg             Temperature Axis 1                            UP       8.1        42d        37d        11%   0.5
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     7.6        38d        38d         9%   1.2
+  sensor_47_avg             Mains frequency OS-side                       DOWN    15.5        38d        38d        16%   1.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     8.0        38d        38d        11%   1.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     7.7        38d        38d         9%   1.2
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  UP      14.2        38d        37d        12%   1.1
+  sensor_167_avg            Air temp. transformer container               UP       2.7        26d          -          -   1.8
+  sensor_12_avg             Battery discharge current axis 1              DOWN     4.0        24d        24d        12%   0.0
+  sensor_14_avg             Battery discharge current axis 3              DOWN     3.9        24d        24d        12%   0.0
+  sensor_13_avg             Battery discharge current axis 2              DOWN     2.4        24d          -          -   0.0
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.9          -          -          -   1.4
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.5          -          -          -   1.2
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.9          -          -          -   1.4
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Hydraulic                 anomaly begins at 118d before failure <-- FIRST
+    Converter/Power           anomaly begins at 110d before failure
+    Cabinet/Cooling           anomaly begins at 105d before failure
+    Gearbox                   anomaly begins at 101d before failure
+    Bearing                   anomaly begins at 101d before failure
+    Electrical Bus            anomaly begins at 84d before failure
+    Generator                 anomaly begins at 44d before failure
+    Transformer               anomaly begins at 44d before failure
+    Pitch System              anomaly begins at 42d before failure
+    Battery                   anomaly begins at 24d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    Ô£à CORRECT: First degrading system (Hydraulic at 118d) MATCHES fault '10115 : Oil level error, two-pump mode + Oil Leaka'
+
+##############################################################################################################
+EVENT 15: Randomn small failures regarding pitch resulting in a longer standstill due to a defect pitch encode
+Detection: ensemble at 76d | 9 channels | Data: 189 days
+All channels: gearbox, hydraulic, generator, pitch, zero_power, ensemble, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     3.6       182d        96d        24%   2.0
+  sensor_45_avg             Fluid level oil container A2                  DOWN     6.9       158d        50d        21%   1.4
+  sensor_44_avg             Fluid level oil container A1                  UP       2.8       154d          -          -   0.3
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP      14.2       146d        56d        29%   0.1
+  sensor_186_avg            Gearbox oil temperature 1                     UP       6.2       146d        56d        26%   0.1
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP      14.2       146d        56d        29%   0.1
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.1       132d          -          -   1.0
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     4.0        98d        96d        46%   2.8
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       4.8        98d        97d         3%   0.2
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       4.8        98d        97d         3%   0.1
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     6.2        97d        54d       100%   3.4
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     3.8        97d        96d        22%   0.9
+  sensor_167_avg            Air temp. transformer container               DOWN     5.2        96d        74d        34%   1.5
+  sensor_62_avg             Temperature Axis 1                            DOWN     9.7        94d        94d        31%   0.9
+  sensor_14_avg             Battery discharge current axis 3              UP      25.5        94d        73d        25%   0.6
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     7.1        74d        72d        28%   0.7
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN    10.7        68d        68d         4%   0.2
+  sensor_47_avg             Mains frequency OS-side                       DOWN    26.3        68d        68d         4%   0.2
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN    11.1        68d        68d         4%   0.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN    10.8        68d        68d         4%   0.2
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN    10.6        66d        56d        30%   0.4
+  sensor_13_avg             Battery discharge current axis 2              UP       4.6        34d        33d        12%   0.2
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.6          -          -          -   0.1
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.6          -          -          -   0.1
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.6          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Cabinet/Cooling           anomaly begins at 182d before failure <-- FIRST
+    Gearbox                   anomaly begins at 158d before failure
+    Bearing                   anomaly begins at 146d before failure
+    Converter/Power           anomaly begins at 132d before failure
+    Hydraulic                 anomaly begins at 98d before failure
+    Electrical Bus            anomaly begins at 97d before failure
+    Pitch System              anomaly begins at 94d before failure
+    Battery                   anomaly begins at 94d before failure
+    Transformer               anomaly begins at 74d before failure
+    Generator                 anomaly begins at 66d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 94d, but Cabinet/Cooling degrades first at 182d
+       -> Cabinet/Cooling stressed 87d BEFORE Pitch System ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 16: WEC in failure - hub battery charger defect
+Detection: drift_batt at 59d | 11 channels | Data: 186 days
+All channels: gearbox, transformer, hydraulic, generator, pitch, rotor_bearing, cabinet_temp, drift_24v, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_44_avg             Fluid level oil container A1                  DOWN    13.7       171d        50d        79%   2.9
+  sensor_25_avg             Current drain 24V nacelle                     UP       6.4       144d        50d        68%   0.0
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     3.2       144d        20d         5%   0.3
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     3.1       142d         3d        33%   0.6
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     4.4       142d        59d        23%   0.9
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.5       142d        19d        16%   0.7
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     3.1       142d         3d        33%   0.6
+  sensor_14_avg             Battery discharge current axis 3              DOWN     3.8       140d        20d        59%   0.1
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.7       118d          -          -   0.2
+  sensor_167_avg            Air temp. transformer container               DOWN     6.5        62d        50d        82%   1.7
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     3.2        60d        21d        12%   0.6
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     7.0        60d        50d        91%   4.0
+  sensor_12_avg             Battery discharge current axis 1              DOWN    17.8        60d        60d         5%   1.6
+  sensor_13_avg             Battery discharge current axis 2              DOWN    37.8        60d        60d         5%   1.4
+  sensor_62_avg             Temperature Axis 1                            DOWN     4.3        46d        26d        22%   1.4
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       5.7        22d        21d        14%   0.2
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     5.5        22d        21d        14%   0.8
+  sensor_47_avg             Mains frequency OS-side                       UP      13.4        22d        21d        17%   0.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       5.7        22d        21d        14%   0.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       5.7        22d        21d        14%   0.1
+  sensor_45_avg             Fluid level oil container A2                  UP      30.2        21d        21d        14%   0.2
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       3.0        19d          -          -   2.9
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       4.2        18d        18d       100%   3.7
+  sensor_131_avg            Generator RMS current L2                      UP       1.6          -          -          -   0.9
+  sensor_130_avg            Generator RMS current L1                      UP       1.6          -          -          -   0.9
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Gearbox                   anomaly begins at 171d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 144d before failure
+    Generator                 anomaly begins at 142d before failure
+    Transformer               anomaly begins at 142d before failure
+    Bearing                   anomaly begins at 142d before failure
+    Pitch System              anomaly begins at 140d before failure
+    Battery                   anomaly begins at 140d before failure
+    Converter/Power           anomaly begins at 118d before failure
+    Cabinet/Cooling           anomaly begins at 62d before failure
+    Hydraulic                 anomaly begins at 60d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Battery) starts at 140d, but Gearbox degrades first at 171d
+       -> Gearbox stressed 31d BEFORE Battery ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 18: We had some failures (st├Ârung 24VAC Versorgung Rotorbremse) on the 16th in the afternoon. From 17th 
+Detection: drift_hvrp at 56d | 4 channels | Data: 184 days
+All channels: generator, pitch, ensemble, drift_hvrp
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     3.3       164d       160d         1%   1.6
+  sensor_167_avg            Air temp. transformer container               UP       3.5       164d        59d        16%   0.6
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     3.4       164d       161d         1%   1.0
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     3.5       164d       162d         2%   0.8
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.8       164d       161d         2%   1.1
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     3.4       164d       161d         1%   1.0
+  sensor_62_avg             Temperature Axis 1                            DOWN     3.0       161d          -          -   0.3
+  sensor_45_avg             Fluid level oil container A2                  DOWN     3.6       160d       160d         1%   0.3
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       3.4       160d       160d         1%   0.1
+  sensor_74_avg             Hydraulic oil tank level                      UP       3.4       160d       160d         1%   0.1
+  sensor_47_avg             Mains frequency OS-side                       UP       3.4       160d       160d         1%   0.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       3.4       160d       160d         1%   0.1
+  sensor_44_avg             Fluid level oil container A1                  DOWN     3.5       160d       160d         1%   0.6
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       3.4       160d       160d         1%   0.1
+  sensor_75_avg             Maximum reactive power HV converter           UP      22.0       160d       160d        19%   0.3
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       3.3       160d        65d        11%   1.2
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       3.0       160d          -          -   1.4
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.5       159d          -          -   0.4
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       2.8       132d          -          -   2.3
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       3.9       132d        60d        61%   0.4
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.7          -          -          -   1.0
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.7          -          -          -   1.0
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.7          -          -          -   1.0
+  sensor_12_avg             Battery discharge current axis 1              UP       1.1          -          -          -   0.0
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.6          -          -          -   0.7
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Transformer               anomaly begins at 164d before failure <-- FIRST
+    Cabinet/Cooling           anomaly begins at 164d before failure <-- FIRST
+    Gearbox                   anomaly begins at 164d before failure
+    Generator                 anomaly begins at 164d before failure
+    Bearing                   anomaly begins at 164d before failure
+    Pitch System              anomaly begins at 161d before failure
+    Hydraulic                 anomaly begins at 160d before failure
+    Electrical Bus            anomaly begins at 160d before failure
+    Converter/Power           anomaly begins at 160d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 160d, but Transformer degrades first at 164d
+       -> Transformer stressed 4d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 28: P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic system
+Detection: rotor_bearing at 18d | 1 channels | Data: 194 days
+All channels: rotor_bearing
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_191_avg            Oil temperature 1 main transformer            UP       2.3       112d          -          -   0.8
+  sensor_167_avg            Air temp. transformer container               UP       2.9       112d          -          -   2.3
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP     125.4       112d        20d       100% 121.7
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP     125.7       112d        19d       100% 122.0
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     3.5       112d        94d         2%   3.2
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     2.6       106d          -          -   1.4
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     2.5       106d          -          -   0.8
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       2.4       105d          -          -   0.2
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN    12.5       105d        90d         9%   0.2
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     8.0       105d        89d         8%   2.5
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.8        93d          -          -   2.1
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       6.6        73d        40d        80%   6.6
+  sensor_45_avg             Fluid level oil container A2                  UP       3.5        30d        17d        38%   3.2
+  sensor_44_avg             Fluid level oil container A1                  UP       2.7        28d          -          -   2.4
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     3.2         2d         2d       100%   3.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     3.4         2d         2d       100%   3.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     3.3         2d         2d       100%   3.2
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.6          -          -          -   1.2
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.4          -          -          -   0.3
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.6          -          -          -   1.2
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.6          -          -          -   1.2
+  sensor_62_avg             Temperature Axis 1                            DOWN     1.9          -          -          -   0.2
+  sensor_12_avg             Battery discharge current axis 1              UP       1.2          -          -          -   0.1
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.5          -          -          -   0.6
+  sensor_14_avg             Battery discharge current axis 3              UP       1.3          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Transformer               anomaly begins at 112d before failure <-- FIRST
+    Cabinet/Cooling           anomaly begins at 112d before failure <-- FIRST
+    Bearing                   anomaly begins at 112d before failure
+    Hydraulic                 anomaly begins at 112d before failure
+    Gearbox                   anomaly begins at 106d before failure
+    Generator                 anomaly begins at 106d before failure
+    Converter/Power           anomaly begins at 105d before failure
+    Electrical Bus            anomaly begins at 93d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 112d, but Transformer degrades first at 112d
+       -> Transformer stressed 1d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 30: Pitch failure - defect fan on pitch motor
+Detection: ensemble at 64d | 11 channels | Data: 195 days
+All channels: gearbox, transformer, hydraulic, generator, pitch, hpg, ensemble, drift_24v, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       2.2       174d          -          -   0.1
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     2.2       174d          -          -   0.0
+  sensor_62_avg             Temperature Axis 1                            DOWN    10.5       171d        48d        76%   3.3
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.2       148d          -          -   0.4
+  sensor_44_avg             Fluid level oil container A1                  DOWN   381.8       146d        63d       100% 381.2
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     9.5       108d        22d       100%   4.4
+  sensor_13_avg             Battery discharge current axis 2              UP      12.1       102d       100d        47%   3.6
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     5.6       100d        54d        93%   5.4
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN    13.6       100d        22d        93%   2.7
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN    13.6       100d        22d        93%   2.7
+  sensor_87_avg             Motor current gear oil pump A                 DOWN   139.1        92d        92d        56%   4.4
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     6.1        64d        54d        97%   3.8
+  sensor_167_avg            Air temp. transformer container               DOWN     7.4        56d        52d        88%   4.0
+  sensor_25_avg             Current drain 24V nacelle                     UP      12.7        52d        52d        75%   1.2
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN    13.1        52d        50d        44%   5.7
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     7.8        50d        18d       100%   7.8
+  sensor_14_avg             Battery discharge current axis 3              UP       5.8        28d        22d        91%   2.4
+  sensor_12_avg             Battery discharge current axis 1              UP      10.1        28d        22d        91%   2.6
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP      19.9        23d        23d        15%   1.3
+  sensor_47_avg             Mains frequency OS-side                       UP      24.0        23d        23d        13%   1.3
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP      20.5        23d        23d        15%   1.3
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP      20.7        23d        23d        15%   0.8
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     6.2        21d        20d        85%   2.1
+  sensor_131_avg            Generator RMS current L2                      UP       1.6          -          -          -   0.6
+  sensor_130_avg            Generator RMS current L1                      UP       1.6          -          -          -   0.6
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Converter/Power           anomaly begins at 174d before failure <-- FIRST
+    Pitch System              anomaly begins at 171d before failure
+    Gearbox                   anomaly begins at 146d before failure
+    Transformer               anomaly begins at 108d before failure
+    Battery                   anomaly begins at 102d before failure
+    Hydraulic                 anomaly begins at 100d before failure
+    Bearing                   anomaly begins at 100d before failure
+    Cabinet/Cooling           anomaly begins at 64d before failure
+    Electrical Bus            anomaly begins at 52d before failure
+    Generator                 anomaly begins at 52d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 171d, but Converter/Power degrades first at 174d
+       -> Converter/Power stressed 2d BEFORE Pitch System ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 31: Communication and Pitchfailure - slip ring and Beckhoff card
+Detection: mains_frequency at 80d | 3 channels | Data: 190 days
+All channels: mains_frequency, abb_voltage_l1, ensemble
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     6.8       182d         9d        56%   1.3
+  sensor_25_avg             Current drain 24V nacelle                     UP      10.6       182d        89d        90%   8.6
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  DOWN     5.0       182d        10d        29%   0.1
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     2.7       182d          -          -   1.3
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     7.3       182d        91d        10%   0.7
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     7.0       182d         9d        67%   1.7
+  sensor_45_avg             Fluid level oil container A2                  DOWN     5.2       168d        72d        45%   3.1
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     5.4       168d        72d        86%   4.3
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     6.0       130d       129d         7%   0.9
+  sensor_62_avg             Temperature Axis 1                            DOWN     5.3       130d       129d         9%   1.8
+  sensor_13_avg             Battery discharge current axis 2              UP     125.1       130d        86d         9%   0.6
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     6.0       130d       129d         7%   0.9
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     3.6        92d        44d        33%   3.1
+  sensor_12_avg             Battery discharge current axis 1              UP      84.3        86d        86d         8%   0.7
+  sensor_14_avg             Battery discharge current axis 3              UP     122.4        86d        86d         8%   1.4
+  sensor_44_avg             Fluid level oil container A1                  DOWN     6.1        85d        74d        98%   4.8
+  sensor_167_avg            Air temp. transformer container               DOWN     5.8        84d        72d        77%   4.0
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       2.5        76d          -          -   0.6
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     2.1        68d          -          -   0.1
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     2.7        44d          -          -   0.0
+  sensor_47_avg             Mains frequency OS-side                       UP       2.1        44d          -          -   0.0
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     2.8        44d          -          -   0.0
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     2.7        44d          -          -   0.0
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.7          -          -          -   0.7
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.7          -          -          -   0.0
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Gearbox                   anomaly begins at 182d before failure <-- FIRST
+    Hydraulic                 anomaly begins at 182d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 182d before failure <-- FIRST
+    Generator                 anomaly begins at 182d before failure
+    Transformer               anomaly begins at 182d before failure
+    Cabinet/Cooling           anomaly begins at 168d before failure
+    Pitch System              anomaly begins at 130d before failure
+    Bearing                   anomaly begins at 130d before failure
+    Battery                   anomaly begins at 130d before failure
+    Converter/Power           anomaly begins at 76d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 130d, but Gearbox degrades first at 182d
+       -> Gearbox stressed 52d BEFORE Pitch System ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 182d, but Gearbox degrades first at 182d
+       -> Gearbox stressed 0d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 33: P20_Blade3_Grease Collector missing
+Detection: ensemble at 70d | 2 channels | Data: 194 days
+All channels: generator, ensemble
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     2.2       132d          -          -   0.3
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     2.3       132d          -          -   0.3
+  sensor_167_avg            Air temp. transformer container               UP       4.8       114d        72d        45%   3.0
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     4.8       112d        84d         5%   0.2
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     4.8       112d        84d         5%   0.2
+  sensor_45_avg             Fluid level oil container A2                  UP       6.8       104d        84d        20%   2.1
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       5.1        94d        94d        33%   2.3
+  sensor_74_avg             Hydraulic oil tank level                      DOWN    23.2        94d        85d        22%   5.4
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       4.9        94d        80d        50%   3.5
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN    48.1        86d        85d         9%   8.6
+  sensor_47_avg             Mains frequency OS-side                       DOWN    98.4        86d        86d         9%   8.8
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN    48.8        86d        85d         9%   8.9
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN    47.0        86d        85d         9%   8.6
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     5.8        85d        84d        10%   0.7
+  sensor_186_avg            Gearbox oil temperature 1                     UP     151.9        84d        84d        31% 151.9
+  sensor_191_avg            Oil temperature 1 main transformer            UP       4.1        84d        82d         5%   0.2
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.4        83d          -          -   1.4
+  sensor_62_avg             Temperature Axis 1                            UP       2.7        82d          -          -   1.3
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.6        72d          -          -   0.6
+  sensor_131_avg            Generator RMS current L2                      DOWN     2.2        72d          -          -   0.5
+  sensor_130_avg            Generator RMS current L1                      DOWN     2.2        72d          -          -   0.5
+  sensor_132_avg            Generator RMS current L3                      DOWN     2.2        72d          -          -   0.5
+  sensor_12_avg             Battery discharge current axis 1              DOWN     1.0          -          -          -   0.0
+  sensor_14_avg             Battery discharge current axis 3              UP       1.3          -          -          -   0.0
+  sensor_13_avg             Battery discharge current axis 2              UP       1.3          -          -          -   0.0
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Converter/Power           anomaly begins at 132d before failure <-- FIRST
+    Cabinet/Cooling           anomaly begins at 114d before failure
+    Bearing                   anomaly begins at 112d before failure
+    Gearbox                   anomaly begins at 104d before failure
+    Hydraulic                 anomaly begins at 94d before failure
+    Electrical Bus            anomaly begins at 86d before failure
+    Generator                 anomaly begins at 85d before failure
+    Transformer               anomaly begins at 84d before failure
+    Pitch System              anomaly begins at 82d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 82d, but Converter/Power degrades first at 132d
+       -> Converter/Power stressed 49d BEFORE Pitch System ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 35: Turbine had several short standstills (max 8min) with failure "Schwingungen Umrichter Drehmomenten L
+Detection: drift_hvrp at 62d | 2 channels | Data: 183 days
+All channels: ensemble, drift_hvrp
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_191_avg            Oil temperature 1 main transformer            UP       2.6       163d          -          -   0.4
+  sensor_87_avg             Motor current gear oil pump A                 UP       2.4       122d          -          -   0.5
+  sensor_75_avg             Maximum reactive power HV converter           DOWN    11.3        97d        64d        28%   3.8
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       2.8        97d          -          -   0.2
+  sensor_47_avg             Mains frequency OS-side                       UP       2.8        97d          -          -   0.2
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       2.8        97d          -          -   0.2
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       2.8        97d          -          -   0.2
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     2.3        97d          -          -   0.8
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     3.2        96d        96d         1%   0.3
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     3.2        96d        96d         1%   0.3
+  sensor_74_avg             Hydraulic oil tank level                      UP       3.0        96d        96d         1%   0.5
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.2        96d        96d         1%   0.3
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     3.3        96d        96d         2%   0.1
+  sensor_62_avg             Temperature Axis 1                            UP       3.0        96d        96d         1%   0.1
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     3.2        96d        96d         1%   0.3
+  sensor_45_avg             Fluid level oil container A2                  UP       2.5        96d          -          -   0.1
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       2.8        96d          -          -   0.1
+  sensor_44_avg             Fluid level oil container A1                  UP       2.5        96d          -          -   0.1
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  UP       2.2        96d          -          -   0.1
+  sensor_167_avg            Air temp. transformer container               UP       2.7        73d          -          -   0.7
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       2.7        72d          -          -   0.9
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     2.4        18d          -          -   1.7
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.7          -          -          -   0.7
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.7          -          -          -   0.7
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.7          -          -          -   0.7
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Transformer               anomaly begins at 163d before failure <-- FIRST
+    Gearbox                   anomaly begins at 122d before failure
+    Electrical Bus            anomaly begins at 97d before failure
+    Converter/Power           anomaly begins at 97d before failure
+    Pitch System              anomaly begins at 96d before failure
+    Generator                 anomaly begins at 96d before failure
+    Hydraulic                 anomaly begins at 96d before failure
+    Bearing                   anomaly begins at 96d before failure
+    Cabinet/Cooling           anomaly begins at 73d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔØô UNVERIFIABLE: Fault description doesn't map to known sensor systems
+       First degrading system: Transformer at 163d
+
+##############################################################################################################
+EVENT 39: 15004 : Safety chain relay open + 93005 : Gear oil cooler bypass valve
+Detection: drift_freq at 40d | 6 channels | Data: 187 days
+All channels: generator, pitch, ensemble, drift_filter, drift_freq, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     3.2       165d       164d         1%   0.2
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     2.9       150d          -          -   2.0
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     2.5       119d          -          -   0.8
+  sensor_13_avg             Battery discharge current axis 2              DOWN     2.0       119d          -          -   0.0
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.0       114d       114d         1%   1.5
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     2.2       114d          -          -   0.5
+  sensor_131_avg            Generator RMS current L2                      DOWN     2.4       111d          -          -   0.0
+  sensor_130_avg            Generator RMS current L1                      DOWN     2.4       111d          -          -   0.0
+  sensor_132_avg            Generator RMS current L3                      DOWN     2.4       111d          -          -   0.0
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     2.9       110d          -          -   0.5
+  sensor_47_avg             Mains frequency OS-side                       UP      40.8       110d        40d        12%   1.8
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.5       110d          -          -   0.6
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     2.7        78d          -          -   0.1
+  sensor_45_avg             Fluid level oil container A2                  DOWN     2.6        78d          -          -   1.0
+  sensor_167_avg            Air temp. transformer container               DOWN     2.2        78d          -          -   1.3
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.4        78d          -          -   0.9
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       6.5        40d        38d         8%   0.5
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       6.6        40d        38d         8%   0.5
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       6.6        40d        38d         8%   0.5
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       1.2          -          -          -   0.9
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     1.7          -          -          -   0.5
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       4.9          -          -          -   0.2
+  sensor_12_avg             Battery discharge current axis 1              UP       1.8          -          -          -   0.1
+  sensor_87_avg             Motor current gear oil pump A                 UP       2.5          -          -          -   0.5
+  sensor_14_avg             Battery discharge current axis 3              UP       1.4          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Electrical Bus            anomaly begins at 165d before failure <-- FIRST
+    Transformer               anomaly begins at 150d before failure
+    Pitch System              anomaly begins at 119d before failure
+    Hydraulic                 anomaly begins at 119d before failure
+    Battery                   anomaly begins at 119d before failure
+    Generator                 anomaly begins at 114d before failure
+    Gearbox                   anomaly begins at 114d before failure
+    Cabinet/Cooling           anomaly begins at 78d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Gearbox) starts at 114d, but Electrical Bus degrades first at 165d
+       -> Electrical Bus stressed 51d BEFORE Gearbox ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 119d, but Electrical Bus degrades first at 165d
+       -> Electrical Bus stressed 46d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 44: Valve in water cooling system was left in wrong position after maintenance actions on 05-08-2020
+Detection: drift_abb at 28d | 5 channels | Data: 219 days
+All channels: gearbox, pitch, drift_freq, drift_hvrp, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.2       204d          -          -   0.3
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     2.7       132d          -          -   0.5
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     3.1       131d       129d         1%   0.2
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.9       130d          -          -   0.7
+  sensor_191_avg            Oil temperature 1 main transformer            UP       3.2       130d       128d         1%   0.3
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.5       130d       129d         2%   0.5
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.9       130d          -          -   0.7
+  sensor_186_avg            Gearbox oil temperature 1                     UP       2.1       128d          -          -   0.8
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     4.1       110d       110d        47%   0.7
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     4.1       110d       110d        47%   0.7
+  sensor_167_avg            Air temp. transformer container               UP       4.2       110d       108d        19%   0.1
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       3.3       110d        66d        14%   0.5
+  sensor_44_avg             Fluid level oil container A1                  UP       3.1       109d        66d         5%   0.4
+  sensor_62_avg             Temperature Axis 1                            UP       3.7       108d       104d         7%   1.0
+  sensor_131_avg            Generator RMS current L2                      UP       2.4        99d          -          -   0.7
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP     107.8        99d        29d        38%   0.3
+  sensor_47_avg             Mains frequency OS-side                       UP     247.8        99d        26d        31%   0.7
+  sensor_130_avg            Generator RMS current L1                      UP       2.4        99d          -          -   0.7
+  sensor_132_avg            Generator RMS current L3                      UP       2.4        99d          -          -   0.7
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP     108.5        99d        29d        38%   0.3
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP     105.7        99d        29d        38%   0.3
+  sensor_45_avg             Fluid level oil container A2                  DOWN    40.2        96d        96d         3%   1.1
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     3.4         5d         5d        50%   0.3
+  sensor_87_avg             Motor current gear oil pump A                 DOWN     1.0          -          -          -   1.0
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  UP       1.1          -          -          -   1.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Electrical Bus            anomaly begins at 204d before failure <-- FIRST
+    Hydraulic                 anomaly begins at 132d before failure
+    Generator                 anomaly begins at 130d before failure
+    Transformer               anomaly begins at 130d before failure
+    Bearing                   anomaly begins at 130d before failure
+    Gearbox                   anomaly begins at 128d before failure
+    Converter/Power           anomaly begins at 110d before failure
+    Cabinet/Cooling           anomaly begins at 110d before failure
+    Pitch System              anomaly begins at 108d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 132d, but Electrical Bus degrades first at 204d
+       -> Electrical Bus stressed 72d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Cabinet/Cooling) starts at 110d, but Electrical Bus degrades first at 204d
+       -> Electrical Bus stressed 94d BEFORE Cabinet/Cooling ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 47: Failure due to Rotorbrake and Hydraulic problemes - Hydraulic pump A disabeld, 2h later turbine back
+Detection: drift_batt at 80d | 6 channels | Data: 187 days
+All channels: pitch, drift_24v, drift_filter, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_13_avg             Battery discharge current axis 2              UP       4.0       162d        80d        12%   1.1
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP      20.7       118d        46d        19%   0.6
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP      23.8       118d        46d        52%   2.5
+  sensor_74_avg             Hydraulic oil tank level                      UP       2.5       101d          -          -   0.8
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     6.2        82d        82d        13%   0.7
+  sensor_167_avg            Air temp. transformer container               DOWN     5.6        82d        81d        46%   2.7
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       3.6        82d        81d         2%   0.3
+  sensor_45_avg             Fluid level oil container A2                  UP       4.7        82d        46d        25%   1.9
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP      18.4        82d        80d        58%  17.5
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     4.8        82d        82d         5%   0.5
+  sensor_44_avg             Fluid level oil container A1                  UP       6.0        82d        46d        32%   2.5
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       3.6        82d        81d         2%   0.3
+  sensor_186_avg            Gearbox oil temperature 1                     UP       3.2        81d        80d         1%   0.5
+  sensor_14_avg             Battery discharge current axis 3              UP       4.9        81d        22d        34%   0.9
+  sensor_62_avg             Temperature Axis 1                            DOWN     3.6        80d        22d        27%   0.2
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     5.8        57d        46d        96%   3.4
+  sensor_25_avg             Current drain 24V nacelle                     UP      14.3        46d        46d        96%   5.0
+  sensor_12_avg             Battery discharge current axis 1              DOWN     2.2        20d          -          -   0.0
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       6.8        16d        16d        18%   0.8
+  sensor_47_avg             Mains frequency OS-side                       UP      21.9        16d        16d        24%   1.2
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       7.3        16d        16d        18%   0.8
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       7.3        16d        16d        18%   0.5
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  UP      17.6        10d        10d       100%  17.6
+  sensor_131_avg            Generator RMS current L2                      UP       1.6          -          -          -   0.8
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     1.8          -          -          -   0.5
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Pitch System              anomaly begins at 162d before failure <-- FIRST
+    Battery                   anomaly begins at 162d before failure <-- FIRST
+    Converter/Power           anomaly begins at 118d before failure
+    Hydraulic                 anomaly begins at 101d before failure
+    Transformer               anomaly begins at 82d before failure
+    Cabinet/Cooling           anomaly begins at 82d before failure
+    Gearbox                   anomaly begins at 82d before failure
+    Generator                 anomaly begins at 82d before failure
+    Bearing                   anomaly begins at 82d before failure
+    Electrical Bus            anomaly begins at 46d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 101d, but Pitch System degrades first at 162d
+       -> Pitch System stressed 62d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 49: Failure 2023-04-05 03:30 - defective coupling between gear oil pump and motor
+Detection: drift_hvrp at 72d | 2 channels | Data: 184 days
+All channels: drift_pump, drift_hvrp
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     3.2       180d       177d         1%   3.2
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     3.2       180d       177d         1%   3.2
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     2.9       179d          -          -   2.2
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     3.1       179d         1d       100%   3.1
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.6       179d       178d         2%   3.0
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       3.7       142d       142d         1%   0.4
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       3.8       142d       142d         1%   0.4
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.1       117d          -          -   1.5
+  sensor_12_avg             Battery discharge current axis 1              UP       7.8        90d        90d         3%   0.2
+  sensor_75_avg             Maximum reactive power HV converter           UP       3.4        74d        74d         2%   0.0
+  sensor_87_avg             Motor current gear oil pump A                 DOWN    22.4         4d         4d       100%  18.5
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     4.1         4d         2d       100%   3.9
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     2.1         2d          -          -   1.9
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.7          -          -          -   1.6
+  sensor_45_avg             Fluid level oil container A2                  DOWN     1.8          -          -          -   0.9
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     1.1          -          -          -   0.0
+  sensor_167_avg            Air temp. transformer container               DOWN     1.9          -          -          -   1.6
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.7          -          -          -   1.6
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.7          -          -          -   1.6
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     1.7          -          -          -   0.8
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.0          -          -          -   1.0
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     1.2          -          -          -   0.0
+  sensor_44_avg             Fluid level oil container A1                  DOWN     1.7          -          -          -   1.0
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     1.2          -          -          -   0.0
+  sensor_14_avg             Battery discharge current axis 3              UP       1.3          -          -          -   0.7
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Bearing                   anomaly begins at 180d before failure <-- FIRST
+    Gearbox                   anomaly begins at 179d before failure
+    Generator                 anomaly begins at 179d before failure
+    Transformer               anomaly begins at 179d before failure
+    Converter/Power           anomaly begins at 142d before failure
+    Pitch System              anomaly begins at 117d before failure
+    Battery                   anomaly begins at 90d before failure
+    Hydraulic                 anomaly begins at 4d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Gearbox) starts at 179d, but Bearing degrades first at 180d
+       -> Bearing stressed 0d BEFORE Gearbox ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 4d, but Bearing degrades first at 180d
+       -> Bearing stressed 176d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 55: Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade control system
+Detection: ensemble at 62d | 8 channels | Data: 194 days
+All channels: gearbox, transformer, hydraulic, generator, pitch, battery_current, ensemble, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_45_avg             Fluid level oil container A2                  DOWN     2.7       190d          -          -   1.4
+  sensor_25_avg             Current drain 24V nacelle                     UP       3.2       189d       188d         0%   0.1
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.2       189d          -          -   1.3
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     2.0       187d          -          -   0.7
+  sensor_74_avg             Hydraulic oil tank level                      UP       2.5       170d          -          -   0.5
+  sensor_191_avg            Oil temperature 1 main transformer            UP       2.9       170d          -          -   0.9
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.2       170d       170d         1%   0.5
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.4       170d          -          -   0.9
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.4       170d          -          -   0.9
+  sensor_186_avg            Gearbox oil temperature 1                     UP       2.1       168d          -          -   1.1
+  sensor_131_avg            Generator RMS current L2                      UP       2.2       134d          -          -   1.6
+  sensor_130_avg            Generator RMS current L1                      UP       2.2       134d          -          -   1.6
+  sensor_132_avg            Generator RMS current L3                      UP       2.2       134d          -          -   1.6
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       2.6       100d          -          -   1.0
+  sensor_167_avg            Air temp. transformer container               UP       2.7        88d          -          -   0.5
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       8.4        64d        63d         6%   0.9
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       8.6        64d        63d         6%   0.9
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       8.5        64d        63d         6%   0.9
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     1.7          -          -          -   1.2
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     1.6          -          -          -   0.8
+  sensor_47_avg             Mains frequency OS-side                       UP       1.7          -          -          -   0.4
+  sensor_62_avg             Temperature Axis 1                            UP       2.0          -          -          -   0.5
+  sensor_12_avg             Battery discharge current axis 1              DOWN     1.5          -          -          -   0.4
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.2          -          -          -   0.9
+  sensor_14_avg             Battery discharge current axis 3              DOWN     1.2          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Gearbox                   anomaly begins at 190d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 189d before failure
+    Cabinet/Cooling           anomaly begins at 187d before failure
+    Generator                 anomaly begins at 170d before failure
+    Hydraulic                 anomaly begins at 170d before failure
+    Transformer               anomaly begins at 170d before failure
+    Bearing                   anomaly begins at 170d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 189d, but Gearbox degrades first at 190d
+       -> Gearbox stressed 0d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 66: Pitchfailure - defect Beckhoffcard, Axis 2, rectified on 23/01 - Anomalie liegt aber l├ñnger an als d
+Detection: drift_filter at 74d | 10 channels | Data: 186 days
+All channels: gearbox, hydraulic, generator, pitch, zero_power, drift_24v, drift_filter, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     5.3       167d        73d        94%   4.2
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     7.1       166d        74d        95%   4.8
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     7.6       148d        72d        58%   4.8
+  sensor_45_avg             Fluid level oil container A2                  DOWN     7.5       134d       133d         6%   0.1
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.9       130d          -          -   2.1
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN    13.9       122d        30d        51%   0.3
+  sensor_62_avg             Temperature Axis 1                            DOWN    11.0       122d        69d        51%   2.5
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN    13.8       122d        30d        51%   0.3
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN    11.8       121d        31d        56%   0.2
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP      38.2       100d        76d        68%   4.0
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP      42.4       100d        75d        62%   3.9
+  sensor_167_avg            Air temp. transformer container               DOWN     6.2        74d        70d        57%   3.4
+  sensor_25_avg             Current drain 24V nacelle                     UP       5.8        73d        72d        63%   0.9
+  sensor_14_avg             Battery discharge current axis 3              UP      24.6        69d        48d        40%   0.8
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     7.5        50d        48d        46%   1.7
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN    10.7        44d        44d         8%   0.3
+  sensor_47_avg             Mains frequency OS-side                       DOWN    25.7        44d        44d         8%   0.0
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN    11.1        44d        44d         8%   0.3
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN    10.8        44d        44d         8%   0.3
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     6.0        31d        30d        48%   0.1
+  sensor_13_avg             Battery discharge current axis 2              UP       4.7         8d         8d        44%   0.9
+  sensor_131_avg            Generator RMS current L2                      UP       1.6          -          -          -   0.1
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.9          -          -          -   0.0
+  sensor_130_avg            Generator RMS current L1                      UP       1.6          -          -          -   0.1
+  sensor_132_avg            Generator RMS current L3                      UP       1.6          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Cabinet/Cooling           anomaly begins at 167d before failure <-- FIRST
+    Hydraulic                 anomaly begins at 166d before failure
+    Gearbox                   anomaly begins at 134d before failure
+    Pitch System              anomaly begins at 122d before failure
+    Bearing                   anomaly begins at 122d before failure
+    Generator                 anomaly begins at 121d before failure
+    Converter/Power           anomaly begins at 100d before failure
+    Electrical Bus            anomaly begins at 73d before failure
+    Battery                   anomaly begins at 69d before failure
+    Transformer               anomaly begins at 50d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 122d, but Cabinet/Cooling degrades first at 167d
+       -> Cabinet/Cooling stressed 46d BEFORE Pitch System ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 73d, but Cabinet/Cooling degrades first at 167d
+       -> Cabinet/Cooling stressed 94d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 67: Turbine has some issues with overpressure on the main transformer
+Detection: drift_batt at 70d | 5 channels | Data: 214 days
+All channels: transformer, generator, pitch, ensemble, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     3.5       208d        74d         3%   0.6
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.4       206d          -          -   0.3
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       3.7       193d       148d         2%   0.2
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       3.7       193d       148d         2%   0.2
+  sensor_186_avg            Gearbox oil temperature 1                     UP       5.9       156d        73d         6%   0.2
+  sensor_12_avg             Battery discharge current axis 1              UP       3.9       149d        71d         4%   0.1
+  sensor_14_avg             Battery discharge current axis 3              UP       3.9       149d        71d         4%   0.1
+  sensor_13_avg             Battery discharge current axis 2              UP       3.9       149d        71d         4%   0.1
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.9       148d          -          -   0.3
+  sensor_167_avg            Air temp. transformer container               DOWN     2.5       108d          -          -   1.1
+  sensor_45_avg             Fluid level oil container A2                  DOWN     2.9       107d          -          -   1.1
+  sensor_191_avg            Oil temperature 1 main transformer            UP       4.5       107d        73d         5%   0.4
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     2.7       107d          -          -   2.0
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.2       106d          -          -   1.3
+  sensor_48_avg             Hydraulic pressure Aggregate System pressure  DOWN     6.4        74d        74d         4%   0.1
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     5.6        74d        73d         8%   0.0
+  sensor_25_avg             Current drain 24V nacelle                     UP       2.0        62d          -          -   1.3
+  sensor_131_avg            Generator RMS current L2                      UP       1.5          -          -          -   0.1
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       1.1          -          -          -   0.1
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     1.5          -          -          -   0.9
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     1.3          -          -          -   0.5
+  sensor_130_avg            Generator RMS current L1                      UP       1.5          -          -          -   0.1
+  sensor_132_avg            Generator RMS current L3                      UP       1.5          -          -          -   0.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       1.1          -          -          -   0.1
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       1.1          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Hydraulic                 anomaly begins at 208d before failure <-- FIRST
+    Converter/Power           anomaly begins at 206d before failure
+    Bearing                   anomaly begins at 193d before failure
+    Gearbox                   anomaly begins at 156d before failure
+    Pitch System              anomaly begins at 149d before failure
+    Battery                   anomaly begins at 149d before failure
+    Cabinet/Cooling           anomaly begins at 108d before failure
+    Transformer               anomaly begins at 107d before failure
+    Generator                 anomaly begins at 74d before failure
+    Electrical Bus            anomaly begins at 62d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Transformer) starts at 107d, but Hydraulic degrades first at 208d
+       -> Hydraulic stressed 102d BEFORE Transformer ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 70: 21002 : Axis 1 DC-link voltage low, batt
+Detection: drift_abb at 80d | 2 channels | Data: 195 days
+All channels: drift_freq, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     3.1       174d       172d         0%   0.9
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.7       174d          -          -   1.4
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.2       174d       172d         1%   0.5
+  sensor_25_avg             Current drain 24V nacelle                     UP       3.5       174d         3d        33%   2.4
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.6       173d          -          -   0.5
+  sensor_186_avg            Gearbox oil temperature 1                     UP       2.6       173d          -          -   0.7
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.6       173d          -          -   0.5
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     4.6       172d        25d        28%   3.2
+  sensor_131_avg            Generator RMS current L2                      UP       2.4       151d          -          -   0.6
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.9       151d          -          -   0.3
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP      16.5       151d        80d        15%   0.0
+  sensor_130_avg            Generator RMS current L1                      UP       2.4       151d          -          -   0.6
+  sensor_132_avg            Generator RMS current L3                      UP       2.4       151d          -          -   0.6
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP      16.9       151d        80d        15%   0.1
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP      16.3       151d        80d        15%   0.0
+  sensor_44_avg             Fluid level oil container A1                  DOWN     3.0       118d         3d        33%   2.6
+  sensor_47_avg             Mains frequency OS-side                       UP       9.8        78d        78d        12%   0.4
+  sensor_45_avg             Fluid level oil container A2                  DOWN     3.4        36d         4d        57%   2.8
+  sensor_167_avg            Air temp. transformer container               DOWN     3.5        24d         4d        62%   2.6
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     3.6        24d        12d        38%   2.8
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     1.9          -          -          -   1.9
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     1.4          -          -          -   0.9
+  sensor_87_avg             Motor current gear oil pump A                 DOWN     1.5          -          -          -   1.5
+  sensor_14_avg             Battery discharge current axis 3              UP       1.2          -          -          -   0.0
+  sensor_13_avg             Battery discharge current axis 2              UP       1.1          -          -          -   0.1
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Pitch System              anomaly begins at 174d before failure <-- FIRST
+    Transformer               anomaly begins at 174d before failure <-- FIRST
+    Generator                 anomaly begins at 174d before failure
+    Electrical Bus            anomaly begins at 174d before failure
+    Gearbox                   anomaly begins at 173d before failure
+    Bearing                   anomaly begins at 173d before failure
+    Hydraulic                 anomaly begins at 172d before failure
+    Converter/Power           anomaly begins at 151d before failure
+    Cabinet/Cooling           anomaly begins at 24d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    Ô£à CORRECT: First degrading system (Pitch System at 174d) MATCHES fault '21002 : Axis 1 DC-link voltage low, batt'
+
+##############################################################################################################
+EVENT 76: WEC in failure with pitch battery issues - rewiring
+Detection: drift_batt at 62d | 11 channels | Data: 181 days
+All channels: gearbox, transformer, hydraulic, generator, pitch, rotor_bearing, cabinet_temp, drift_24v, drift_freq, drift_abb, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_44_avg             Fluid level oil container A1                  DOWN    14.2       174d        54d        67%   2.8
+  sensor_25_avg             Current drain 24V nacelle                     UP       6.2       148d        54d        64%   3.7
+  sensor_186_avg            Gearbox oil temperature 1                     UP       3.2       148d        23d         4%   0.7
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.5       146d        22d        11%   0.6
+  sensor_191_avg            Oil temperature 1 main transformer            UP       4.3       146d        23d        54%   0.0
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       3.1       146d         6d         8%   0.5
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       3.1       146d         6d         8%   0.5
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.3        88d          -          -   0.3
+  sensor_167_avg            Air temp. transformer container               DOWN     6.5        64d        53d        75%   1.4
+  sensor_14_avg             Battery discharge current axis 3              UP       3.7        64d        24d        48%   1.1
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     7.0        64d        53d        92%   4.3
+  sensor_13_avg             Battery discharge current axis 2              UP      37.2        64d        64d         6%   0.7
+  sensor_12_avg             Battery discharge current axis 1              UP      17.5        63d        63d         5%   0.4
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     3.1        62d        24d         8%   0.2
+  sensor_62_avg             Temperature Axis 1                            DOWN     4.3        50d        28d        14%   1.2
+  sensor_45_avg             Fluid level oil container A2                  UP      32.5        24d        24d        14%   0.5
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       5.6        24d        24d        12%   0.1
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     5.4        24d        24d        12%   0.5
+  sensor_47_avg             Mains frequency OS-side                       UP      13.2        24d        24d        16%   0.1
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       5.6        24d        24d        12%   0.1
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       5.6        24d        24d        12%   0.1
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       2.8        22d          -          -   2.7
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       4.0        22d        22d       100%   3.7
+  sensor_131_avg            Generator RMS current L2                      UP       1.6          -          -          -   0.6
+  sensor_130_avg            Generator RMS current L1                      UP       1.6          -          -          -   0.6
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Gearbox                   anomaly begins at 174d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 148d before failure
+    Generator                 anomaly begins at 146d before failure
+    Transformer               anomaly begins at 146d before failure
+    Bearing                   anomaly begins at 146d before failure
+    Converter/Power           anomaly begins at 88d before failure
+    Cabinet/Cooling           anomaly begins at 64d before failure
+    Pitch System              anomaly begins at 64d before failure
+    Battery                   anomaly begins at 64d before failure
+    Hydraulic                 anomaly begins at 62d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 64d, but Gearbox degrades first at 174d
+       -> Gearbox stressed 110d BEFORE Pitch System ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 148d, but Gearbox degrades first at 174d
+       -> Gearbox stressed 26d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Battery) starts at 64d, but Gearbox degrades first at 174d
+       -> Gearbox stressed 110d BEFORE Battery ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 78: P20_Grounding role brake disc + P20_cover-lightning-main-cabinet-hub
+Detection: ensemble at 45d | 4 channels | Data: 185 days
+All channels: gearbox, generator, ensemble, drift_freq
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_173_avg            Generator temperature 1 cooling air inlet     DOWN     3.0       173d          -          -   0.1
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     2.6       173d          -          -   0.6
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       6.3       171d        50d        96%   5.3
+  sensor_44_avg             Fluid level oil container A1                  UP      86.5       116d        62d        71%  86.5
+  sensor_45_avg             Fluid level oil container A2                  UP       6.8        74d        48d        42%   3.6
+  sensor_167_avg            Air temp. transformer container               UP       4.8        73d        62d        68%   4.5
+  sensor_62_avg             Temperature Axis 1                            UP       3.9        70d        39d         8%   1.6
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP      19.4        61d        46d        40%   4.6
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       2.1        60d          -          -   0.2
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       2.1        54d          -          -   0.2
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     7.2        46d        42d        15%   0.7
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     7.3        46d        40d        11%   0.8
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     7.2        46d        42d        15%   0.7
+  sensor_191_avg            Oil temperature 1 main transformer            UP       3.2        42d        27d         2%   0.8
+  sensor_47_avg             Mains frequency OS-side                       DOWN     4.0        40d        30d         7%   0.9
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     2.1        38d          -          -   0.9
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     2.2        38d          -          -   1.0
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     2.1        38d          -          -   0.9
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.6          -          -          -   1.0
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.6          -          -          -   0.9
+  sensor_74_avg             Hydraulic oil tank level                      UP       1.9          -          -          -   0.5
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.6          -          -          -   1.0
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.6          -          -          -   1.0
+  sensor_12_avg             Battery discharge current axis 1              UP       1.2          -          -          -   0.0
+  sensor_87_avg             Motor current gear oil pump A                 DOWN     1.4          -          -          -   1.4
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Generator                 anomaly begins at 173d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 173d before failure <-- FIRST
+    Cabinet/Cooling           anomaly begins at 171d before failure
+    Gearbox                   anomaly begins at 116d before failure
+    Pitch System              anomaly begins at 70d before failure
+    Hydraulic                 anomaly begins at 61d before failure
+    Converter/Power           anomaly begins at 60d before failure
+    Bearing                   anomaly begins at 46d before failure
+    Transformer               anomaly begins at 42d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Hydraulic) starts at 61d, but Generator degrades first at 173d
+       -> Generator stressed 112d BEFORE Hydraulic ÔåÆ physical cascade confirmed
+    ÔÜí CASCADE: Fault system (Cabinet/Cooling) starts at 171d, but Generator degrades first at 173d
+       -> Generator stressed 2d BEFORE Cabinet/Cooling ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 79: Communication fault BK1120 in NC300
+Detection: ensemble at 64d | 6 channels | Data: 185 days
+All channels: gearbox, hydraulic, generator, pitch, rotor_bearing, ensemble
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       2.5       168d          -          -   0.6
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   DOWN     2.9       126d          -          -   2.0
+  sensor_191_avg            Oil temperature 1 main transformer            UP       3.1       126d       126d         1%   0.4
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   DOWN     2.9       126d          -          -   2.0
+  sensor_186_avg            Gearbox oil temperature 1                     DOWN     2.5       126d          -          -   0.3
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.5       126d          -          -   0.8
+  sensor_14_avg             Battery discharge current axis 3              UP       2.6        94d          -          -   0.1
+  sensor_167_avg            Air temp. transformer container               UP       4.7        68d        44d        99%   4.2
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       7.4        68d        66d        78%   5.8
+  sensor_74_avg             Hydraulic oil tank level                      UP       3.3        48d        46d         2%   1.1
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       6.1        47d        46d        35%   4.0
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       2.4        38d          -          -   0.3
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       2.5        38d          -          -   0.3
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       2.3        38d          -          -   0.4
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.5        30d          -          -   1.3
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.5          -          -          -   0.3
+  sensor_75_avg             Maximum reactive power HV converter           UP       1.7          -          -          -   0.3
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 DOWN     1.6          -          -          -   1.3
+  sensor_47_avg             Mains frequency OS-side                       UP       1.8          -          -          -   0.3
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.5          -          -          -   0.3
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.5          -          -          -   0.3
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     1.4          -          -          -   1.4
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.9          -          -          -   1.4
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     1.7          -          -          -   1.4
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Generator                 anomaly begins at 168d before failure <-- FIRST
+    Transformer               anomaly begins at 126d before failure
+    Bearing                   anomaly begins at 126d before failure
+    Pitch System              anomaly begins at 126d before failure
+    Gearbox                   anomaly begins at 126d before failure
+    Battery                   anomaly begins at 94d before failure
+    Cabinet/Cooling           anomaly begins at 68d before failure
+    Hydraulic                 anomaly begins at 48d before failure
+    Electrical Bus            anomaly begins at 38d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Electrical Bus) starts at 38d, but Generator degrades first at 168d
+       -> Generator stressed 131d BEFORE Electrical Bus ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 81: Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filter Supply 
+Detection: drift_batt at 74d | 2 channels | Data: 187 days
+All channels: drift_24v, drift_batt
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     2.0       170d          -          -   0.4
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     2.7       169d          -          -   0.6
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       4.3       152d       151d         2%   0.3
+  sensor_47_avg             Mains frequency OS-side                       UP       4.3       152d       151d         2%   0.2
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       4.3       152d       151d         2%   0.3
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       4.3       152d       151d         2%   0.3
+  sensor_25_avg             Current drain 24V nacelle                     UP       6.6       151d         6d       100%   6.0
+  sensor_186_avg            Gearbox oil temperature 1                     UP       3.6       150d       149d         1%   0.9
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     2.9       150d          -          -   0.2
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.8       150d          -          -   0.8
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       3.1       150d       148d         1%   0.5
+  sensor_44_avg             Fluid level oil container A1                  DOWN     3.2       150d       148d         0%   0.2
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.8       150d          -          -   0.8
+  sensor_13_avg             Battery discharge current axis 2              UP      12.3       126d        75d         4%   0.2
+  sensor_12_avg             Battery discharge current axis 1              UP       3.3       124d         4d        11%   1.7
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.8       104d          -          -   0.0
+  sensor_167_avg            Air temp. transformer container               DOWN     4.0        90d         6d        67%   1.9
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     4.1        90d         6d        92%   2.9
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP      43.6        84d        82d        56%   8.2
+  sensor_45_avg             Fluid level oil container A2                  DOWN     3.2        68d         6d        18%   1.1
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP      30.4        35d        10d       100%   4.4
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.4         5d          -          -   1.2
+  sensor_131_avg            Generator RMS current L2                      UP       1.8          -          -          -   1.6
+  sensor_130_avg            Generator RMS current L1                      UP       1.8          -          -          -   1.6
+  sensor_132_avg            Generator RMS current L3                      UP       1.8          -          -          -   1.6
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Hydraulic                 anomaly begins at 170d before failure <-- FIRST
+    Electrical Bus            anomaly begins at 152d before failure
+    Gearbox                   anomaly begins at 150d before failure
+    Transformer               anomaly begins at 150d before failure
+    Generator                 anomaly begins at 150d before failure
+    Bearing                   anomaly begins at 150d before failure
+    Pitch System              anomaly begins at 126d before failure
+    Battery                   anomaly begins at 126d before failure
+    Converter/Power           anomaly begins at 104d before failure
+    Cabinet/Cooling           anomaly begins at 90d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Converter/Power) starts at 104d, but Hydraulic degrades first at 170d
+       -> Hydraulic stressed 65d BEFORE Converter/Power ÔåÆ physical cascade confirmed
+
+##############################################################################################################
+EVENT 90: COMMUNICATION FAULT BK1120 IN NC300 A2
+Detection: ensemble at 68d | 6 channels | Data: 191 days
+All channels: hydraulic, generator, pitch, hpg, rotor_bearing, ensemble
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.8       182d          -          -   0.3
+  sensor_191_avg            Oil temperature 1 main transformer            UP       3.0       182d       182d         0%   0.5
+  sensor_167_avg            Air temp. transformer container               UP       3.1       182d        16d        10%   2.5
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.8       182d          -          -   0.3
+  sensor_186_avg            Gearbox oil temperature 1                     UP       2.6       182d          -          -   0.4
+  sensor_74_avg             Hydraulic oil tank level                      UP       2.7       182d          -          -   0.7
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       2.7       182d          -          -   0.6
+  sensor_62_avg             Temperature Axis 1                            UP       3.3       182d        14d        22%   2.4
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 DOWN     2.9       154d          -          -   1.0
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       3.1       154d       124d         0%   0.2
+  sensor_39_avg             Electrical cabinet ambient temperature        UP       6.8        96d        83d        86%   5.9
+  sensor_45_avg             Fluid level oil container A2                  UP       6.2        94d        60d        57%   3.8
+  sensor_44_avg             Fluid level oil container A1                  UP       4.2        94d        59d        34%   2.9
+  sensor_178_avg            Hydraulic oil tank temperature 1              UP       5.2        91d        58d        79%   4.8
+  sensor_75_avg             Maximum reactive power HV converter           DOWN     2.2        48d          -          -   0.2
+  sensor_131_avg            Generator RMS current L2                      DOWN     1.9          -          -          -   0.1
+  sensor_60_avg             ABB-LS Input K4, UL3                          UP       2.0          -          -          -   0.8
+  sensor_47_avg             Mains frequency OS-side                       UP       1.8          -          -          -   0.6
+  sensor_130_avg            Generator RMS current L1                      DOWN     1.9          -          -          -   0.1
+  sensor_132_avg            Generator RMS current L3                      DOWN     1.9          -          -          -   0.1
+  sensor_25_avg             Current drain 24V nacelle                     DOWN     1.4          -          -          -   0.6
+  sensor_58_avg             ABB-LS Input K4, UL1                          UP       1.9          -          -          -   0.8
+  sensor_59_avg             ABB-LS Input K4, UL2                          UP       1.9          -          -          -   0.7
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.1          -          -          -   0.7
+  sensor_14_avg             Battery discharge current axis 3              UP       1.0          -          -          -   0.0
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Transformer               anomaly begins at 182d before failure <-- FIRST
+    Bearing                   anomaly begins at 182d before failure <-- FIRST
+    Cabinet/Cooling           anomaly begins at 182d before failure <-- FIRST
+    Pitch System              anomaly begins at 182d before failure
+    Gearbox                   anomaly begins at 182d before failure
+    Generator                 anomaly begins at 182d before failure
+    Hydraulic                 anomaly begins at 182d before failure
+    Converter/Power           anomaly begins at 154d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔØî MISMATCH: Expected ['Electrical Bus'] but first degrading is Transformer
+       Expected sensors show NO anomaly ÔåÆ detection may be unrelated
+
+##############################################################################################################
+EVENT 91: 23020 : Axis 3 not ready-to-operate
+Detection: drift_freq at 54d | 6 channels | Data: 197 days
+All channels: transformer, generator, pitch, drift_filter, drift_freq, drift_abb
+##############################################################################################################
+
+  TIMELINE: When each sensor starts drifting (sorted by earliest)
+  Sensor                    Description                                   Dir     Max ¤â   First>2¤â   First>3¤â  Sustained    Now
+  ------------------------------------------------------------------------------------------------------------------------
+  sensor_25_avg             Current drain 24V nacelle                     UP       4.0       180d       178d         1%   0.1
+  sensor_191_avg            Oil temperature 1 main transformer            DOWN     2.5       160d          -          -   0.3
+  sensor_109_avg            Pressure difference aeration 1st filter stage 1 UP       7.1       159d        42d        51%   0.0
+  sensor_74_avg             Hydraulic oil tank level                      DOWN     2.6       140d          -          -   1.6
+  sensor_173_avg            Generator temperature 1 cooling air inlet     UP       2.9       140d          -          -   0.4
+  sensor_194_avg            Axis 1 Rotor bearing inner ring temperature   UP       2.2       139d          -          -   0.3
+  sensor_195_avg            Axis 2 Rotor bearing inner ring temperature   UP       2.2       139d          -          -   0.3
+  sensor_178_avg            Hydraulic oil tank temperature 1              DOWN     3.5       134d        68d         7%   1.1
+  sensor_39_avg             Electrical cabinet ambient temperature        DOWN     2.5       134d          -          -   0.8
+  sensor_131_avg            Generator RMS current L2                      UP       2.5       124d          -          -   0.1
+  sensor_75_avg             Maximum reactive power HV converter           UP       2.1       124d          -          -   0.1
+  sensor_130_avg            Generator RMS current L1                      UP       2.5       124d          -          -   0.1
+  sensor_132_avg            Generator RMS current L3                      UP       2.5       124d          -          -   0.1
+  sensor_62_avg             Temperature Axis 1                            DOWN     2.1       124d          -          -   0.5
+  sensor_167_avg            Air temp. transformer container               DOWN     2.3        92d          -          -   0.6
+  sensor_44_avg             Fluid level oil container A1                  DOWN     2.3        92d          -          -   0.7
+  sensor_110_avg            Pressure difference aeration 1st filter stage 2 UP       6.7        72d        42d        45%   0.2
+  sensor_60_avg             ABB-LS Input K4, UL3                          DOWN     6.6        54d        54d        11%   0.1
+  sensor_47_avg             Mains frequency OS-side                       UP      10.6        54d        54d        17%   0.0
+  sensor_58_avg             ABB-LS Input K4, UL1                          DOWN     6.6        54d        54d        12%   0.1
+  sensor_59_avg             ABB-LS Input K4, UL2                          DOWN     6.5        54d        54d        12%   0.1
+  sensor_186_avg            Gearbox oil temperature 1                     UP       2.0          -          -          -   0.3
+  sensor_12_avg             Battery discharge current axis 1              UP       1.2          -          -          -   0.1
+  sensor_87_avg             Motor current gear oil pump A                 UP       1.2          -          -          -   0.8
+  sensor_14_avg             Battery discharge current axis 3              UP       1.1          -          -          -   0.0
+
+  SYSTEM-LEVEL FAULT PROPAGATION:
+    Electrical Bus            anomaly begins at 180d before failure <-- FIRST
+    Transformer               anomaly begins at 160d before failure
+    Converter/Power           anomaly begins at 159d before failure
+    Generator                 anomaly begins at 140d before failure
+    Hydraulic                 anomaly begins at 140d before failure
+    Bearing                   anomaly begins at 139d before failure
+    Cabinet/Cooling           anomaly begins at 134d before failure
+    Pitch System              anomaly begins at 124d before failure
+    Gearbox                   anomaly begins at 92d before failure
+
+  ROOT CAUSE ASSESSMENT:
+    ÔÜí CASCADE: Fault system (Pitch System) starts at 124d, but Electrical Bus degrades first at 180d
+       -> Electrical Bus stressed 56d BEFORE Pitch System ÔåÆ physical cascade confirmed
+
+
+==============================================================================================================
+DONE - All 27 events analyzed
+==============================================================================================================
