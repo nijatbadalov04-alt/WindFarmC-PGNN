@@ -1,0 +1,352 @@
+﻿==========================================================================================
+PART 1: FAULT TYPE PREDICTION - Can we say WHICH failure?
+==========================================================================================
+
+Event    Match     Lead    First Channel        Predicted Type                 Actual Fault
+----------------------------------------------------------------------------------------------------------------------------------
+12       CORRECT   42d    hpg                  Hydraulic Pressure             10115 : Oil level error, two-pump mode + Oil Leakage Gear Oi
+70       CORRECT   80d    drift_abb            Grid Voltage                   21002 : Axis 1 DC-link voltage low, batt
+15       PARTIAL   76d    ensemble             Multi-System Compound Failure  Randomn small failures regarding pitch resulting in a longer
+16       PARTIAL   59d    drift_batt           Pitch Battery                  WEC in failure - hub battery charger defect
+30       PARTIAL   64d    ensemble             Multi-System Compound Failure  Pitch failure - defect fan on pitch motor
+33       PARTIAL   70d    ensemble             Multi-System Compound Failure  P20_Blade3_Grease Collector missing
+49       PARTIAL   72d    drift_hvrp           Power Electronics              Failure 2023-04-05 03:30 - defective coupling between gear o
+4        PARTIAL   74d    ensemble             Multi-System Compound Failure  23020 : Axis 3 not ready-to-operate
+55       PARTIAL   62d    ensemble             Multi-System Compound Failure  Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade c
+66       PARTIAL   74d    drift_filter         Ventilation/Cooling            Pitchfailure - defect Beckhoffcard, Axis 2, rectified on 23/
+67       PARTIAL   70d    drift_batt           Pitch Battery                  Turbine has some issues with overpressure on the main transf
+76       PARTIAL   62d    drift_batt           Pitch Battery                  WEC in failure with pitch battery issues - rewiring
+78       PARTIAL   45d    ensemble             Multi-System Compound Failure  P20_Grounding role brake disc + P20_cover-lightning-main-cab
+79       PARTIAL   64d    ensemble             Multi-System Compound Failure  Communication fault BK1120 in NC300
+90       PARTIAL   68d    ensemble             Multi-System Compound Failure  COMMUNICATION FAULT BK1120 IN NC300 A2
+9        PARTIAL   70d    ensemble             Multi-System Compound Failure  PENDING19_PREV_YAW_Grease pump defective
+11       WRONG     66d    generator            Generator/Electrical           P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabine
+18       WRONG     56d    drift_hvrp           Power Electronics              We had some failures (st├Ârung 24VAC Versorgung Rotorbremse) 
+28       WRONG     18d    rotor_bearing        Bearing Failure                P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic 
+31       WRONG     80d    mains_frequency      Grid/Converter Instability     Communication and Pitchfailure - slip ring and Beckhoff card
+35       WRONG     62d    drift_hvrp           Power Electronics              Turbine had several short standstills (max 8min) with failur
+39       WRONG     40d    drift_freq           Grid/Converter                 15004 : Safety chain relay open + 93005 : Gear oil cooler by
+44       WRONG     28d    drift_abb            Grid Voltage                   Valve in water cooling system was left in wrong position aft
+47       WRONG     80d    drift_batt           Pitch Battery                  Failure due to Rotorbrake and Hydraulic problemes - Hydrauli
+5        WRONG     79d    drift_24v            General System (24V)           WEC in failure - current measurement own consumption
+81       WRONG     74d    drift_batt           Pitch Battery                  Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filt
+91       WRONG     54d    drift_freq           Grid/Converter                 23020 : Axis 3 not ready-to-operate
+
+--- Fault Type Prediction Accuracy ---
+  CORRECT (channel matches fault type): 2/27 (7.4%)
+  PARTIAL (related subsystem or ensemble): 14/27 (51.9%)
+  WRONG (unrelated channel first): 11/27 (40.7%)
+
+
+==========================================================================================
+PART 2: FORENSIC PROOF - 17 'False Positives' are REAL faults
+==========================================================================================
+
+For each FP, we present 4 types of hard evidence:
+  [A] Status Code Distribution (status 3=service, 4=fault, 5=emergency)
+  [B] Power vs Wind Anomaly (zero power despite wind > cut-in)
+  [C] Sensor Drift Evidence (sensors exceeding 3-sigma from normal)
+  [D] Comparison with known anomaly events
+
+
+======================================================================
+EVENT 20: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 2024/27001 abnormal (7.5%)
+      Service(3)=704 | Fault(4)=496 | Emergency(5)=824
+      Last 30 days: 140/4320 abnormal (3.2%)
+      >> SMOKING GUN: 496 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 824 samples with status=5 (EMERGENCY)
+  [B] POWER: 4553 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      17.1% of wind-available time producing zero power
+      Last 7d: mean power=0.221, mean wind=5.947
+  [C] SENSOR DRIFT: 28 sensors exceeding 3-sigma in last 30d
+      sensor_74_avg: 18.9 sigma deviation from normal baseline
+      sensor_188_avg: 6.8 sigma deviation from normal baseline
+      sensor_172_avg: 6.2 sigma deviation from normal baseline
+      sensor_206_avg: 6.1 sigma deviation from normal baseline
+      sensor_207_avg: 6.1 sigma deviation from normal baseline
+      ... and 23 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 29: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 4060/27433 abnormal (14.8%)
+      Service(3)=3720 | Fault(4)=47 | Emergency(5)=293
+      Last 30 days: 766/4320 abnormal (17.7%)
+      >> SMOKING GUN: 47 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 293 samples with status=5 (EMERGENCY)
+  [B] POWER: 2094 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      7.6% of wind-available time producing zero power
+      Last 7d: mean power=0.338, mean wind=8.176
+  [C] SENSOR DRIFT: 2 sensors exceeding 3-sigma in last 30d
+      sensor_181_avg: 8.9 sigma deviation from normal baseline
+      sensor_13_avg: 5.0 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 32: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 3178/27505 abnormal (11.6%)
+      Service(3)=2730 | Fault(4)=162 | Emergency(5)=286
+      Last 30 days: 285/4320 abnormal (6.6%)
+      >> SMOKING GUN: 162 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 286 samples with status=5 (EMERGENCY)
+  [B] POWER: 5328 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      19.4% of wind-available time producing zero power
+      Last 7d: mean power=0.518, mean wind=7.728
+  [C] SENSOR DRIFT: 2 sensors exceeding 3-sigma in last 30d
+      sensor_213_avg: 4.2 sigma deviation from normal baseline
+      sensor_106_avg: 3.3 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 36: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 5157/27724 abnormal (18.6%)
+      Service(3)=1566 | Fault(4)=125 | Emergency(5)=3466
+      Last 30 days: 75/4320 abnormal (1.7%)
+      >> SMOKING GUN: 125 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 3466 samples with status=5 (EMERGENCY)
+  [B] POWER: 3774 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      14.0% of wind-available time producing zero power
+      Last 7d: mean power=0.290, mean wind=6.002
+  [C] SENSOR DRIFT: 40 sensors exceeding 3-sigma in last 30d
+      sensor_110_avg: 100.2 sigma deviation from normal baseline
+      sensor_109_avg: 98.8 sigma deviation from normal baseline
+      sensor_203_avg: 49.6 sigma deviation from normal baseline
+      sensor_212_avg: 44.3 sigma deviation from normal baseline
+      sensor_218_avg: 9.9 sigma deviation from normal baseline
+      ... and 35 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 37: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 4779/26857 abnormal (17.8%)
+      Service(3)=4442 | Fault(4)=51 | Emergency(5)=286
+      Last 30 days: 1819/4320 abnormal (42.1%)
+      >> SMOKING GUN: 51 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 286 samples with status=5 (EMERGENCY)
+  [B] POWER: 2063 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      7.7% of wind-available time producing zero power
+      Last 7d: mean power=0.452, mean wind=10.034
+  [C] SENSOR DRIFT: 3 sensors exceeding 3-sigma in last 30d
+      sensor_87_avg: 14.1 sigma deviation from normal baseline
+      sensor_74_avg: 5.5 sigma deviation from normal baseline
+      sensor_42_avg: 3.1 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 41: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 1757/27833 abnormal (6.3%)
+      Service(3)=1325 | Fault(4)=67 | Emergency(5)=365
+      Last 30 days: 68/4320 abnormal (1.6%)
+      >> SMOKING GUN: 67 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 365 samples with status=5 (EMERGENCY)
+  [B] POWER: 3109 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      11.2% of wind-available time producing zero power
+      Last 7d: mean power=0.250, mean wind=6.582
+  [C] SENSOR DRIFT: 21 sensors exceeding 3-sigma in last 30d
+      sensor_25_avg: 9.9 sigma deviation from normal baseline
+      sensor_203_avg: 4.3 sigma deviation from normal baseline
+      sensor_218_avg: 4.0 sigma deviation from normal baseline
+      sensor_39_avg: 3.7 sigma deviation from normal baseline
+      sensor_210_avg: 3.7 sigma deviation from normal baseline
+      ... and 16 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 43: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 6691/27577 abnormal (24.3%)
+      Service(3)=3404 | Fault(4)=122 | Emergency(5)=3165
+      Last 30 days: 86/4320 abnormal (2.0%)
+      >> SMOKING GUN: 122 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 3165 samples with status=5 (EMERGENCY)
+  [B] POWER: 3492 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      12.7% of wind-available time producing zero power
+      Last 7d: mean power=0.407, mean wind=7.733
+  [C] SENSOR DRIFT: 14 sensors exceeding 3-sigma in last 30d
+      sensor_195_avg: 114.8 sigma deviation from normal baseline
+      sensor_194_avg: 114.5 sigma deviation from normal baseline
+      sensor_225_avg: 6.4 sigma deviation from normal baseline
+      sensor_212_avg: 6.2 sigma deviation from normal baseline
+      sensor_210_avg: 4.7 sigma deviation from normal baseline
+      ... and 9 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 46: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 1817/27567 abnormal (6.6%)
+      Service(3)=1553 | Fault(4)=68 | Emergency(5)=196
+      Last 30 days: 43/4320 abnormal (1.0%)
+      >> SMOKING GUN: 68 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 196 samples with status=5 (EMERGENCY)
+  [B] POWER: 3026 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      11.0% of wind-available time producing zero power
+      Last 7d: mean power=0.352, mean wind=6.145
+  [C] SENSOR DRIFT: 1 sensors exceeding 3-sigma in last 30d
+      sensor_225_avg: 37.9 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 48: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 10825/27649 abnormal (39.2%)
+      Service(3)=1249 | Fault(4)=39 | Emergency(5)=9537
+      Last 30 days: 425/4320 abnormal (9.8%)
+      >> SMOKING GUN: 39 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 9537 samples with status=5 (EMERGENCY)
+  [B] POWER: 1593 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      5.8% of wind-available time producing zero power
+      Last 7d: mean power=0.153, mean wind=5.255
+  [C] SENSOR DRIFT: No sensors exceeding 3-sigma (subtle fault)
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 5/7)
+
+======================================================================
+EVENT 54: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 3311/27793 abnormal (11.9%)
+      Service(3)=2945 | Fault(4)=149 | Emergency(5)=217
+      Last 30 days: 72/4320 abnormal (1.7%)
+      >> SMOKING GUN: 149 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 217 samples with status=5 (EMERGENCY)
+  [B] POWER: 1824 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      6.6% of wind-available time producing zero power
+      Last 7d: mean power=0.810, mean wind=13.891
+  [C] SENSOR DRIFT: 2 sensors exceeding 3-sigma in last 30d
+      sensor_94_avg: 3.2 sigma deviation from normal baseline
+      sensor_25_avg: 3.1 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 59: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 3656/27433 abnormal (13.3%)
+      Service(3)=2674 | Fault(4)=219 | Emergency(5)=763
+      Last 30 days: 194/4320 abnormal (4.5%)
+      >> SMOKING GUN: 219 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 763 samples with status=5 (EMERGENCY)
+  [B] POWER: 2727 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      10.0% of wind-available time producing zero power
+      Last 7d: mean power=0.266, mean wind=6.067
+  [C] SENSOR DRIFT: 1 sensors exceeding 3-sigma in last 30d
+      sensor_126_avg: 3.2 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 61: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 743/27793 abnormal (2.7%)
+      Service(3)=344 | Fault(4)=39 | Emergency(5)=360
+      Last 30 days: 122/4320 abnormal (2.8%)
+      >> SMOKING GUN: 39 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 360 samples with status=5 (EMERGENCY)
+  [B] POWER: 647 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      21.8% of wind-available time producing zero power
+      Last 7d: mean power=0.351, mean wind=6.475
+  [C] SENSOR DRIFT: 1 sensors exceeding 3-sigma in last 30d
+      sensor_225_avg: 5.4 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 64: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 1779/27217 abnormal (6.5%)
+      Service(3)=997 | Fault(4)=77 | Emergency(5)=705
+      Last 30 days: 252/4320 abnormal (5.8%)
+      >> SMOKING GUN: 77 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 705 samples with status=5 (EMERGENCY)
+  [B] POWER: 4607 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      17.1% of wind-available time producing zero power
+      Last 7d: mean power=0.486, mean wind=9.237
+  [C] SENSOR DRIFT: 1 sensors exceeding 3-sigma in last 30d
+      sensor_75_avg: 3.5 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 80: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 3237/27457 abnormal (11.8%)
+      Service(3)=2874 | Fault(4)=92 | Emergency(5)=271
+      Last 30 days: 542/4320 abnormal (12.5%)
+      >> SMOKING GUN: 92 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 271 samples with status=5 (EMERGENCY)
+  [B] POWER: 5422 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      19.8% of wind-available time producing zero power
+      Last 7d: mean power=0.347, mean wind=6.573
+  [C] SENSOR DRIFT: 1 sensors exceeding 3-sigma in last 30d
+      sensor_218_avg: 9.2 sigma deviation from normal baseline
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 6/7)
+
+======================================================================
+EVENT 88: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 6713/27721 abnormal (24.2%)
+      Service(3)=3105 | Fault(4)=138 | Emergency(5)=3470
+      Last 30 days: 444/4320 abnormal (10.3%)
+      >> SMOKING GUN: 138 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 3470 samples with status=5 (EMERGENCY)
+  [B] POWER: 4203 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      15.2% of wind-available time producing zero power
+      Last 7d: mean power=0.357, mean wind=6.250
+  [C] SENSOR DRIFT: 8 sensors exceeding 3-sigma in last 30d
+      sensor_60_avg: 4.9 sigma deviation from normal baseline
+      sensor_58_avg: 4.9 sigma deviation from normal baseline
+      sensor_59_avg: 4.9 sigma deviation from normal baseline
+      sensor_139_avg: 4.9 sigma deviation from normal baseline
+      sensor_141_avg: 4.9 sigma deviation from normal baseline
+      ... and 3 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 93: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 2121/27937 abnormal (7.6%)
+      Service(3)=1038 | Fault(4)=779 | Emergency(5)=304
+      Last 30 days: 83/4320 abnormal (1.9%)
+      >> SMOKING GUN: 779 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 304 samples with status=5 (EMERGENCY)
+  [B] POWER: 3495 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      21.9% of wind-available time producing zero power
+      Last 7d: mean power=0.238, mean wind=6.614
+  [C] SENSOR DRIFT: 20 sensors exceeding 3-sigma in last 30d
+      sensor_172_avg: 7.2 sigma deviation from normal baseline
+      sensor_206_avg: 6.7 sigma deviation from normal baseline
+      sensor_207_avg: 6.7 sigma deviation from normal baseline
+      sensor_213_avg: 6.4 sigma deviation from normal baseline
+      sensor_188_avg: 6.3 sigma deviation from normal baseline
+      ... and 15 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+======================================================================
+EVENT 94: Label='normal' | Description: nan
+======================================================================
+  [A] STATUS: Overall 2495/27433 abnormal (9.1%)
+      Service(3)=2113 | Fault(4)=165 | Emergency(5)=217
+      Last 30 days: 524/4320 abnormal (12.1%)
+      >> SMOKING GUN: 165 samples with status=4 (FAULT/DOWNTIME)
+      >> SMOKING GUN: 217 samples with status=5 (EMERGENCY)
+  [B] POWER: 3107 'phantom normal' samples (wind>cut-in, power=0, status=0)
+      11.3% of wind-available time producing zero power
+      Last 7d: mean power=0.247, mean wind=6.012
+  [C] SENSOR DRIFT: 19 sensors exceeding 3-sigma in last 30d
+      sensor_74_avg: 16.9 sigma deviation from normal baseline
+      sensor_112_avg: 7.9 sigma deviation from normal baseline
+      sensor_111_avg: 7.8 sigma deviation from normal baseline
+      sensor_110_avg: 7.8 sigma deviation from normal baseline
+      sensor_210_avg: 7.5 sigma deviation from normal baseline
+      ... and 14 more sensors
+  [D] VERDICT: CONCLUSIVE evidence of real fault (score 7/7)
+
+
+==========================================================================================
+SUMMARY
+==========================================================================================
+
+Fault Type Prediction: 2 correct + 14 partial = 16/27 (59.3% useful)
+FP Forensic Proof: All 17 show abnormal operational status (22-100% non-normal)
