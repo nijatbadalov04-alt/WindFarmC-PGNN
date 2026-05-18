@@ -1,0 +1,145 @@
+﻿
+===== SCADA_Data_guide.pdf (16 pages) =====
+Citation: G³ck, C.; Roelofs, C.M.A.;
+Faulstich, S. CARE to Compare: A
+Real-World Benchmark Dataset for
+Early Fault Detection in Wind Turbine
+Data. Data 2024, 9, 138. https://
+doi.org/10.3390/data9120138
+Academic Editor: Giuseppe Ciaburro
+Received: 12 August 2024
+Revised: 11 November 2024
+Accepted: 20 November 2024
+Published: 23 November 2024
+Copyright: ® 2024 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+Article
+CARE to Compare: A Real-World Benchmark Dataset for Early
+Fault Detection in Wind Turbine Data
+Christian G³ck *
+, Cyriana M. A. Roelofs
+and Stefan Faulstich
+Fraunhofer IEE, Joseph-Beuys-Stra▀e 8, 34117 Kassel, Germany; cyriana.roelofs@iee.fraunhofer.de (C.M.A.R.);
+stefan.faulstich@iee.fraunhofer.de (S.F.)
+* Correspondence: christian.gueck@iee.fraunhofer.de
+Abstract: Early fault detection plays a crucial role in the field of predictive maintenance for wind tur-
+bines, yet the comparison of different algorithms poses a difficult task because domain-specific public
+datasets are scarce. Many comparisons of different approaches either use benchmarks composed of
+data from many different domains, inaccessible data, or one of the few publicly available datasets
+that lack detailed information about the faults. Moreover, many publications highlight a couple of
+case studies where fault detection was successful. With this paper, we publish a high quality dataset
+that contains data from 36 wind turbines across 3 different wind farms as well as the most detailed
+fault information of any public wind turbine dataset as far as we know. The new dataset contains
+89 years worth of real-world operating data of wind turbines, distributed across 44 labeled time
+frames for anomalies that led up to faults, as well as 51 time series representing normal behavior.
+Additionally, the quality of training data is ensured by turbine-status-based labels for each data point.
+Furthermore, we propose a new scoring method, called CARE (Coverage, Accuracy, Reliability and
+Earliness), which takes advantage of the information depth that is present in the dataset to identify
+good early fault detection models for wind turbines. This score considers the anomaly detection
+performance, the ability to recognize normal behavior properly, and the capability to raise as few
+false alarms as possible while simultaneously detecting anomalies early.
+Dataset: https://doi.org/10.5281/zenodo.14006163 (accessed on 29 October 2024).
+Dataset License: CC BY-SA 4.0 International.
+Keywords: dataset; early fault detection; wind turbines; predictive maintenance; anomaly detection;
+condition monitoring
+1. Introduction
+Wind energy plays a crucial role in the transition to renewable energy, but monitoring
+and maintaining wind farms and turbines is a costly challenge. These wind farms are
+often located in regions with challenging weather conditions, leading to complex operating
+conditions and increased risk of unexpected failures and downtime. Over the past decade,
+various approaches for condition monitoring, many of which focus on early fault detection
+using SCADA data, have been investigated [1û3].
+A common method to detect component failures early is AD, which identifies outliers
+or other anomalous patterns in the data. In the context of WT, most AD techniques utilize
+data from the SCADA system, failure logs, vibration data, and occasionally status and
+maintenance logs [4]. This paper specifically focuses on AD models used for early fault
+detection based on SCADA data that are validated using additional failure information.
+While there have been several benchmarks [5,6], reviews [7], and comparisons [8] of
+general AD-algorithms, most of them use data from a wide variety of domains like space-
+craft, medical applications, and IT-related data. However, efforts on wind-energy-specific
+Data 2024, 9, 13
+
+===== Karthik_Thesis.pdf (125 pages) =====
+ERROR: 'charmap' codec can't encode characters in position 3655-3656: character maps to <undefined>
+
+===== CWD2017 (1).pdf (14 pages) =====
+ 
+Condition monitoring of wind turbine drive trains by normal 
+behaviour modelling of temperatures 
+Jannis Tautz-Weinert*1 
+Simon J. Watson1 
+ 
+1Centre for Renewable Energy Systems Technology (CREST), 
+Wolfson School of Mechanical, Electrical and Manufacturing Engineering,  
+Loughborough University  
+Holywell Park, Loughborough, LE11 3TU, United Kingdom 
+ 
+Normal behaviour modelling of temperatures 
+ 
+Contents 
+ 
+1 
+Abstract ............................................................................................................... 1 
+2 
+Introduction ......................................................................................................... 1 
+3 
+Main section ........................................................................................................ 2 
+3.1 NBM modelling techniques ........................................................................... 2 
+3.1.1 
+FSRC û non-auto-regressive ........................................................... 3 
+3.1.2 
+ARX û auto-regressive .................................................................... 3 
+3.2 Prediction performance metrics and anomaly detection techniques ............. 3 
+3.3 Case study for gearbox monitoring ............................................................... 4 
+3.3.1 
+Normal behaviour prediction performance....................................... 5 
+3.3.2 
+Calibration of anomaly detection thresholds .................................... 5 
+3.3.3 
+Gearbox failure ................................................................................ 5 
+3.3.4 
+Validation with remaining turbines in farm ....................................... 7 
+4 
+Conclusion .......................................................................................................... 7 
+Acknowledgement .................................................................................................... 8 
+Bibliography .............................................................................................................. 8 
+ 
+Normal behaviour modelling of temperatures 
+1 
+1 Abstract 
+Condition monitoring and early failure detection are needed to reduce operational 
+costs of wind turbines, particularly for offshore farms where accessibility is restricted. 
+Failure detection technologies should be simple and reliable in order to contribute to 
+the overall aim of cost reduction. Operational data from the Supervisory Control And 
+Data Acquisition (SCADA) system are a potential source of information for condition 
+monitoring and have the advantage of being recorded at each turbine without the costs 
+of additional sensors. Detection of drivetrain failures using these ten-minute data has 
+been successfully demonstrated in the last five years. This paper summarises and 
+evaluates different ways of so-called normal behaviour modelling of temperature using 
+SCADA data, i.e. the prediction of a measured temperature under the assumption that 
+the system is behaving normally. After training, the residual of modelled and measured 
+temperature acts as an indicator for possible wear and failures. Multiple approaches 
+are discussed: linear modelling, artificial neural networks in auto-regressive, feed-
+forward and layer recurrent configurations, adaptive neuro-fuzzy inference systems 
+and state estimation techniques. A case study with real data reveals differences of ap-
+proaches, sensitivity to training data and settings of algorithms. Early failure detection 
+of a gearbox failure is demonstrated, although challenges in achieving reliable monitor-
+ing without many false alarms become apparent. 
+2 Introduction 
+Although wind energy costs have been dramatically decreased in the last decade, 
+maintenance costs still contribute with up to 40 EUR/MWh for offshore farms [MIL14]. 
+Traditional corrective maintenance strategies cannot be used for current projects in 
+remote or offshore locations where limited accessibility would result in extended down-
+times. Additional
+
+===== energies-13-04745.pdf (19 pages) =====
+ERROR: 'charmap' codec can't encode character '\ufb01' in position 166: character maps to <undefined>
+
+===== 1-s2.0-S2352484722026634-main (1).pdf (15 pages) =====
+ERROR: 'charmap' codec can't encode character '\u2217' in position 285: character maps to <undefined>

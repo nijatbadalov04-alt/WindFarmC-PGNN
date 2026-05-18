@@ -1,0 +1,101 @@
+﻿====================================================================================================
+ITERATIVE OPTIMIZATION: 10 loops to find best CUSUM h
+====================================================================================================
+
+Loop 1: h=5, k=1.0, sigma=4.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0001  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=100.0% max=100.0%
+
+Loop 2: h=10, k=1.0, sigma=4.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0003  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=100.0% max=100.0%
+
+Loop 3: h=15, k=1.0, sigma=4.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0005  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=100.0% max=100.0%
+
+Loop 4: h=20, k=1.0, sigma=4.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0007  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.9% max=100.0%
+
+Loop 5: h=30, k=1.0, sigma=4.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0011  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.9% max=100.0%
+
+Loop 6: h=50, k=0.8, sigma=3.5
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0010  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.9% max=100.0%
+
+Loop 7: h=75, k=0.8, sigma=3.5
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0015  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.8% max=100.0%
+
+Loop 8: h=100, k=0.5, sigma=3.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0016  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.8% max=100.0%
+
+Loop 9: h=150, k=0.5, sigma=3.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0026  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.7% max=100.0%
+
+Loop 10: h=200, k=0.5, sigma=3.0
+  TP=True/27  FP_events=True/31  Recall=4%
+  C=0.0000  A=0.0037  R=0.1429  E=0.0000
+  CARE=0.0000  Lead=0.0d
+  Normal alarm%: mean=99.6% max=100.0%
+
+====================================================================================================
+BEST: Loop 1, h=5, CARE=0.0000
+====================================================================================================
+
+Best anomaly detection: True/27
+Best false alarms: True/31
+  FA Event 1: crit=21703 alarm=100.0%
+  FA Event 6: crit=24067 alarm=100.0%
+  FA Event 8: crit=25131 alarm=100.0%
+  FA Event 20: crit=24974 alarm=100.0%
+  FA Event 29: crit=23373 alarm=100.0%
+  FA Event 32: crit=24326 alarm=100.0%
+  FA Event 36: crit=22564 alarm=100.0%
+  FA Event 37: crit=22076 alarm=100.0%
+  FA Event 41: crit=26076 alarm=100.0%
+  FA Event 43: crit=20882 alarm=100.0%
+  FA Event 46: crit=25747 alarm=100.0%
+  FA Event 48: crit=16824 alarm=100.0%
+  FA Event 50: crit=26128 alarm=100.0%
+  FA Event 54: crit=24480 alarm=100.0%
+  FA Event 56: crit=24357 alarm=100.0%
+  FA Event 57: crit=25910 alarm=100.0%
+  FA Event 58: crit=25531 alarm=99.9%
+  FA Event 59: crit=23776 alarm=100.0%
+  FA Event 60: crit=25778 alarm=100.0%
+  FA Event 61: crit=27045 alarm=100.0%
+  FA Event 62: crit=24886 alarm=100.0%
+  FA Event 63: crit=24719 alarm=100.0%
+  FA Event 64: crit=25437 alarm=100.0%
+  FA Event 65: crit=25595 alarm=100.0%
+  FA Event 75: crit=27285 alarm=100.0%
+  FA Event 80: crit=24214 alarm=100.0%
+  FA Event 85: crit=24256 alarm=100.0%
+  FA Event 88: crit=21001 alarm=100.0%
+  FA Event 89: crit=26543 alarm=100.0%
+  FA Event 93: crit=25806 alarm=100.0%
+  FA Event 94: crit=24933 alarm=100.0%

@@ -1,0 +1,90 @@
+﻿====================================================================================================
+CARE v5: EWMA-Smoothed Residual Detection ÔÇö 10 Threshold Sweeps
+====================================================================================================
+
+Loop 1: ewma=144, h=50, sig=5.0, min_ch=1
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.0763 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=92.4% max=100.0%
+
+Loop 2: ewma=288, h=50, sig=5.0, min_ch=1
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.0841 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=91.6% max=100.0%
+
+Loop 3: ewma=432, h=50, sig=5.0, min_ch=1
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.0886 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=91.1% max=100.0%
+
+Loop 4: ewma=288, h=100, sig=5.0, min_ch=1
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.0992 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=90.1% max=100.0%
+
+Loop 5: ewma=288, h=100, sig=4.0, min_ch=2
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.1916 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=80.8% max=99.8%
+
+Loop 6: ewma=288, h=150, sig=4.0, min_ch=2
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.2068 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=79.3% max=99.7%
+
+Loop 7: ewma=288, h=200, sig=3.5, min_ch=3
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.3516 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=64.8% max=98.3%
+
+Loop 8: ewma=432, h=200, sig=3.5, min_ch=3
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.3639 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=63.6% max=98.3%
+
+Loop 9: ewma=432, h=300, sig=3.0, min_ch=3
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.3854 R=0.1429 E=0.0000 CARE=0.0000
+  Lead=0.0d  Norm alarm%: mean=61.5% max=98.3%
+
+Loop 10: ewma=432, h=500, sig=3.0, min_ch=4
+  TP=1/27 FP_ev=1/31 Recall=4% Precision=50%
+  C=0.0000 A=0.5274 R=0.1429 E=0.0000 CARE=0.1676
+  Lead=0.0d  Norm alarm%: mean=47.3% max=95.9%
+
+====================================================================================================
+BEST: {'ewma': 432, 'h': 500, 'sig': 3.0, 'min_ch': 4} CARE=0.1676
+====================================================================================================
+
+Detected: True/27
+False alarms: True/31
+  FA 1: crit=18272 alarm=89.1%
+  FA 6: crit=22731 alarm=94.4%
+  FA 8: crit=4222 alarm=17.7%
+  FA 20: crit=8515 alarm=41.7%
+  FA 29: crit=10964 alarm=56.4%
+  FA 32: crit=14515 alarm=60.2%
+  FA 36: crit=8413 alarm=37.3%
+  FA 37: crit=9591 alarm=43.4%
+  FA 41: crit=1516 alarm=14.4%
+  FA 43: crit=7648 alarm=58.9%
+  FA 46: crit=1483 alarm=6.8%
+  FA 48: crit=10098 alarm=68.9%
+  FA 50: crit=21252 alarm=84.7%
+  FA 54: crit=1915 alarm=18.2%
+  FA 56: crit=15823 alarm=65.0%
+  FA 57: crit=23637 alarm=91.2%
+  FA 58: crit=16297 alarm=67.8%
+  FA 59: crit=3613 alarm=28.5%
+  FA 60: crit=1818 alarm=7.1%
+  FA 61: crit=9887 alarm=40.7%
+  FA 62: crit=20080 alarm=80.7%
+  FA 63: crit=6410 alarm=27.8%
+  FA 64: crit=24389 alarm=95.9%
+  FA 65: crit=3951 alarm=15.4%
+  FA 75: crit=2334 alarm=10.2%
+  FA 80: crit=7319 alarm=42.0%
+  FA 85: crit=12908 alarm=55.8%
+  FA 88: crit=11854 alarm=56.4%
+  FA 93: crit=13756 alarm=53.3%
+  FA 94: crit=5707 alarm=35.0%

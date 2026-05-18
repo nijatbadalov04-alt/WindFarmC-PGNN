@@ -1,0 +1,88 @@
+﻿====================================================================================================
+CARE v6: Power-Binned NBM + Rolling Anomaly Score
+====================================================================================================
+
+Loop 1: bins=20 roll=432 z=3.0 frac=0.3 ch=3
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.7410 R=0.1429 E=0.0000 CARE=0.2210
+  Lead=0.0d  NormAlarm: mean=25.9%
+
+Loop 2: bins=20 roll=432 z=3.5 frac=0.3 ch=3
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.8187 R=0.1429 E=0.0000 CARE=0.2404
+  Lead=0.0d  NormAlarm: mean=18.1%
+
+Loop 3: bins=20 roll=432 z=4.0 frac=0.3 ch=3
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.8677 R=0.1429 E=0.0000 CARE=0.2526
+  Lead=0.0d  NormAlarm: mean=13.2%
+
+Loop 4: bins=20 roll=432 z=4.0 frac=0.4 ch=3
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.8677 R=0.1429 E=0.0000 CARE=0.2526
+  Lead=0.0d  NormAlarm: mean=13.2%
+
+Loop 5: bins=20 roll=432 z=4.0 frac=0.5 ch=4
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9297 R=0.1429 E=0.0000 CARE=0.2681
+  Lead=0.0d  NormAlarm: mean=7.0%
+
+Loop 6: bins=30 roll=432 z=4.0 frac=0.5 ch=4
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9275 R=0.1429 E=0.0000 CARE=0.2676
+  Lead=0.0d  NormAlarm: mean=7.2%
+
+Loop 7: bins=30 roll=432 z=5.0 frac=0.5 ch=5
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9852 R=0.1429 E=0.0000 CARE=0.2820
+  Lead=0.0d  NormAlarm: mean=1.5%
+
+Loop 8: bins=30 roll=864 z=4.0 frac=0.5 ch=5
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9543 R=0.1429 E=0.0000 CARE=0.2743
+  Lead=0.0d  NormAlarm: mean=4.6%
+
+Loop 9: bins=30 roll=864 z=5.0 frac=0.6 ch=6
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9899 R=0.1429 E=0.0000 CARE=0.2832
+  Lead=0.0d  NormAlarm: mean=1.0%
+
+Loop 10: bins=30 roll=864 z=5.0 frac=0.7 ch=7
+  TP=1/27 FP_ev=1/31  Recall=4%
+  C=0.0000 A=0.9940 R=0.1429 E=0.0000 CARE=0.2842
+  Lead=0.0d  NormAlarm: mean=0.6%
+
+====================================================================================================
+BEST: {'bins': 30, 'roll': 864, 'z': 5.0, 'ch': 7} ÔåÆ CARE=0.2842
+====================================================================================================
+
+TP: True/27
+  MISS 4: crit=37
+  MISS 5: crit=0
+  MISS 9: crit=0
+  MISS 15: crit=0
+  MISS 16: crit=0
+  MISS 28: crit=0
+  MISS 30: crit=8
+  MISS 31: crit=0
+  MISS 33: crit=0
+  MISS 44: crit=0
+  MISS 47: crit=0
+  MISS 49: crit=0
+  MISS 55: crit=0
+  MISS 66: crit=0
+  MISS 67: crit=0
+  MISS 70: crit=0
+  MISS 78: crit=0
+  MISS 79: crit=0
+  MISS 81: crit=0
+  MISS 90: crit=0
+  MISS 91: crit=0
+FP: True/31
+  FA 1: crit=358 alarm=1.6%
+  FA 20: crit=231 alarm=0.9%
+  FA 29: crit=215 alarm=0.9%
+  FA 36: crit=777 alarm=7.3%
+  FA 56: crit=155 alarm=0.6%
+  FA 57: crit=107 alarm=0.4%
+  FA 65: crit=1192 alarm=6.5%

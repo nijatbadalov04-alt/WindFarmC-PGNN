@@ -1,0 +1,71 @@
+﻿====================================================================================================
+CARE v7: Pareto-Optimal Parameter Search (20 loops)
+====================================================================================================
+  [ 1] bins=20 roll=288 z=2.0 ch=1 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.196 R=0.143 E=0.000 CARE=0.0000 Ôÿà
+  [ 2] bins=20 roll=288 z=2.5 ch=1 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.318 R=0.143 E=0.000 CARE=0.0000
+  [ 3] bins=20 roll=288 z=3.0 ch=1 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.412 R=0.143 E=0.000 CARE=0.0000
+  [ 4] bins=20 roll=288 z=3.0 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.614 R=0.143 E=0.000 CARE=0.1891 Ôÿà
+  [ 5] bins=20 roll=288 z=3.5 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.698 R=0.143 E=0.000 CARE=0.2102 Ôÿà
+  [ 6] bins=20 roll=288 z=4.0 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.757 R=0.143 E=0.000 CARE=0.2250 Ôÿà
+  [ 7] bins=20 roll=432 z=3.0 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.607 R=0.143 E=0.000 CARE=0.1875
+  [ 8] bins=20 roll=432 z=3.5 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.689 R=0.143 E=0.000 CARE=0.2080
+  [ 9] bins=20 roll=432 z=4.0 ch=2 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.751 R=0.143 E=0.000 CARE=0.2235
+  [10] bins=20 roll=432 z=3.0 ch=3 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.741 R=0.143 E=0.000 CARE=0.2210
+  [11] bins=20 roll=432 z=3.5 ch=3 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.819 R=0.143 E=0.000 CARE=0.2404 Ôÿà
+  [12] bins=20 roll=432 z=4.0 ch=3 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.868 R=0.143 E=0.000 CARE=0.2526 Ôÿà
+  [13] bins=20 roll=432 z=4.5 ch=3 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.900 R=0.143 E=0.000 CARE=0.2607 Ôÿà
+  [14] bins=20 roll=432 z=5.0 ch=3 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.921 R=0.143 E=0.000 CARE=0.2659 Ôÿà
+  [15] bins=20 roll=432 z=4.0 ch=4 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.930 R=0.143 E=0.000 CARE=0.2681 Ôÿà
+  [16] bins=20 roll=432 z=4.5 ch=4 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.954 R=0.143 E=0.000 CARE=0.2743 Ôÿà
+  [17] bins=20 roll=432 z=5.0 ch=4 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.970 R=0.143 E=0.000 CARE=0.2782 Ôÿà
+  [18] bins=20 roll=432 z=4.0 ch=5 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.962 R=0.143 E=0.000 CARE=0.2761
+  [19] bins=20 roll=432 z=5.0 ch=5 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.986 R=0.143 E=0.000 CARE=0.2822 Ôÿà
+  [20] bins=20 roll=432 z=5.0 ch=6 ÔåÆ TP=1/27 FP=1/31 C=0.000 A=0.992 R=0.143 E=0.000 CARE=0.2837 Ôÿà
+
+====================================================================================================
+OPTIMAL: {'bins': 20, 'roll': 432, 'z': 5.0, 'ch': 6, 'loop': 20} ÔåÆ CARE=0.2837
+====================================================================================================
+
+TP: True/27, Missed:
+  Event 4: crit=0, 14 channels, alarm=0.0%
+  Event 5: crit=7, 9 channels, alarm=0.0%
+  Event 15: crit=0, 12 channels, alarm=0.0%
+  Event 30: crit=49, 11 channels, alarm=0.2%
+  Event 33: crit=12, 14 channels, alarm=0.0%
+  Event 44: crit=0, 9 channels, alarm=0.0%
+  Event 47: crit=0, 8 channels, alarm=0.0%
+  Event 49: crit=0, 9 channels, alarm=0.0%
+  Event 66: crit=22, 12 channels, alarm=0.1%
+  Event 67: crit=0, 13 channels, alarm=0.0%
+  Event 78: crit=0, 15 channels, alarm=0.0%
+  Event 79: crit=0, 7 channels, alarm=0.0%
+  Event 81: crit=0, 11 channels, alarm=0.0%
+  Event 90: crit=0, 14 channels, alarm=0.0%
+  Event 91: crit=0, 11 channels, alarm=0.0%
+
+FP: True/31
+  Event 1: crit=125, alarm=1.0%
+  Event 20: crit=93, alarm=0.6%
+  Event 36: crit=870, alarm=8.4%
+  Event 48: crit=145, alarm=0.9%
+  Event 56: crit=103, alarm=0.4%
+  Event 57: crit=122, alarm=0.5%
+  Event 58: crit=110, alarm=0.4%
+  Event 62: crit=281, alarm=1.1%
+  Event 64: crit=241, alarm=1.7%
+  Event 65: crit=1740, alarm=9.4%
+  Event 75: crit=100, alarm=0.4%
+
+Detected events detail:
+  Event 9: cov=0.000 ws=0.000 lead=- ch=8 alarm=0.4%
+  Event 11: cov=0.000 ws=0.000 lead=- ch=19 alarm=3.8%
+  Event 12: cov=0.000 ws=0.000 lead=- ch=19 alarm=1.1%
+  Event 16: cov=0.000 ws=0.000 lead=- ch=13 alarm=0.5%
+  Event 18: cov=0.000 ws=0.000 lead=- ch=14 alarm=0.3%
+  Event 28: cov=0.000 ws=0.000 lead=- ch=12 alarm=0.9%
+  Event 31: cov=0.000 ws=0.000 lead=- ch=15 alarm=0.4%
+  Event 35: cov=0.000 ws=0.000 lead=- ch=19 alarm=0.9%
+  Event 39: cov=0.000 ws=0.000 lead=- ch=13 alarm=0.7%
+  Event 55: cov=0.000 ws=0.000 lead=- ch=10 alarm=0.8%
+  Event 70: cov=0.000 ws=0.000 lead=- ch=13 alarm=4.3%
+  Event 76: cov=0.000 ws=0.000 lead=- ch=13 alarm=1.0%

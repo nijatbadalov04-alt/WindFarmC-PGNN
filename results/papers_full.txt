@@ -1,0 +1,10 @@
+﻿python :   File "<string>", line 19
+At line:1 char:32
++ $env:PYTHONIOENCODING="utf-8"; python -c "
++                                ~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  File "<string>", line 19:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    print(f'\n{" =\*80}')
+               ^
+SyntaxError: unterminated string literal (detected at line 19)
