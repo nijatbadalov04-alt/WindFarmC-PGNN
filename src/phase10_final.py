@@ -370,7 +370,7 @@ def main():
             alarm, mc, fidx = care_criticality(preds, tc=3)
             if alarm and fidx is not None:
                 ld = (nw - fidx) * S * 10 / (60*24)
-                if 2.0 <= ld <= 60.0:
+                if 2.0 <= ld <= 80.0:
                     triggered_channels.append(ch_name)
                     if best_alarm is None or fidx < best_alarm["idx"]:
                         best_alarm = {"idx": fidx, "ch": ch_name, "ld": ld, "crit": mc}
@@ -384,7 +384,7 @@ def main():
             alarm, mc, fidx = care_criticality(preds, tc=2)  # Lower tc for CUSUM
             if alarm and fidx is not None:
                 ld = (nw - fidx) * S * 10 / (60*24)
-                if 2.0 <= ld <= 60.0:
+                if 2.0 <= ld <= 80.0:
                     triggered_channels.append(ch_name)
                     if best_alarm is None or fidx < best_alarm["idx"]:
                         best_alarm = {"idx": fidx, "ch": ch_name, "ld": ld, "crit": mc}
@@ -394,7 +394,7 @@ def main():
         alarm, mc, fidx = care_criticality(ens_preds, tc=3)
         if alarm and fidx is not None:
             ld = (nw - fidx) * S * 10 / (60*24)
-            if 2.0 <= ld <= 60.0:
+            if 2.0 <= ld <= 80.0:
                 if "ensemble" not in triggered_channels:
                     triggered_channels.append("ensemble")
                 if best_alarm is None or fidx < best_alarm["idx"]:
@@ -425,7 +425,7 @@ def main():
             alarm, mc, fidx = care_criticality(dpreds, tc=3)
             if alarm and fidx is not None:
                 ld = (nw - fidx) * S * 10 / (60*24)
-                if 2.0 <= ld <= 60.0:
+                if 2.0 <= ld <= 80.0:
                     triggered_channels.append(dname)
                     if best_alarm is None or fidx < best_alarm["idx"]:
                         best_alarm = {"idx": fidx, "ch": dname, "ld": ld, "crit": mc}
