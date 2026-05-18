@@ -1,0 +1,247 @@
+﻿====================================================================================================
+DEEP RELIABILITY CHECK: Are the cascade explanations real?
+====================================================================================================
+
+================================================================================
+EVENT 4: 23020 : Axis 3 not ready-to-operate
+First channel: ensemble at 74d lead | All: kci, ensemble
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['23020', 'axis', 'ready-to-operate']
+
+================================================================================
+EVENT 11: P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabinet Caps missing
+First channel: generator at 66d lead | All: gearbox, transformer, hydraulic, generator, pitch, hpg, rotor_bearing, ensemble, drift_24v, drift_freq, drift_hvrp, drift_abb
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['p20_dguv-v3', '28f1', 'nc310', 'defective', 'p20_blades_cabinet', 'caps', 'missing']
+
+================================================================================
+EVENT 18: We had some failures (st├Ârung 24VAC Versorgung Rotorbremse) on the 16th in 
+First channel: drift_hvrp at 56d lead | All: generator, pitch, ensemble, drift_hvrp
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['some', 'failures', '(st├Ârung', '24vac', 'versorgung', 'rotorbremse)', '16th', 'afternoon.', 'from', '17th']
+
+================================================================================
+EVENT 28: P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic system
+First channel: rotor_bearing at 18d lead | All: rotor_bearing
+================================================================================
+  Keywords found: ['hydraulic']
+  Expected sensors: ['sensor_178_avg', 'sensor_48_avg', 'sensor_74_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_178_avg (Hydraulic oil tank temperature 1): last30=0.1sig, max=2.4sig -> WEAK at 105d
+    sensor_48_avg (Hydraulic pressure Aggregate System pres): last30=0.2sig, max=0.5sig -> NORMAL
+    sensor_74_avg (Hydraulic oil tank level): last30=1.4sig, max=3.5sig -> ANOMALY 3sig at 94d
+
+  [CHECK 2] What did first channel 'rotor_bearing' actually see?
+    Sensor: sensor_194_avg (Axis 1 Rotor bearing inner ring temperat)
+    Drift: 79.3 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 31: Communication and Pitchfailure - slip ring and Beckhoff card
+First channel: mains_frequency at 80d lead | All: mains_frequency, abb_voltage_l1, ensemble
+================================================================================
+  Keywords found: ['pitch', 'communication']
+  Expected sensors: ['sensor_12_avg', 'sensor_25_avg', 'sensor_62_avg', 'sensor_14_avg', 'sensor_13_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_12_avg (Battery discharge current axis 1): last30=7.9sig, max=84.3sig -> ANOMALY 3sig at 86d
+    sensor_13_avg (Battery discharge current axis 2): last30=12.2sig, max=125.1sig -> ANOMALY 3sig at 86d
+    sensor_14_avg (Battery discharge current axis 3): last30=11.3sig, max=122.4sig -> ANOMALY 3sig at 86d
+    sensor_25_avg (Current drain 24V nacelle): last30=7.0sig, max=10.6sig -> ANOMALY 3sig at 89d
+    sensor_62_avg (Temperature Axis 1): last30=1.5sig, max=5.3sig -> ANOMALY 3sig at 129d
+
+  [CHECK 2] What did first channel 'mains_frequency' actually see?
+    Sensor: sensor_47_avg (Mains frequency OS-side)
+    Drift: 0.1 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 33: P20_Blade3_Grease Collector missing
+First channel: ensemble at 70d lead | All: generator, ensemble
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['p20_blade3_grease', 'collector', 'missing']
+
+================================================================================
+EVENT 35: Turbine had several short standstills (max 8min) with failure "Schwingungen
+First channel: drift_hvrp at 62d lead | All: ensemble, drift_hvrp
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['turbine', 'several', 'short', 'standstills', '(max', '8min)', 'with', 'failure', '"schwingungen', 'umrichter']
+
+================================================================================
+EVENT 39: 15004 : Safety chain relay open + 93005 : Gear oil cooler bypass valve
+First channel: drift_freq at 40d lead | All: generator, pitch, ensemble, drift_filter, drift_freq, drift_abb
+================================================================================
+  Keywords found: ['oil', 'valve']
+  Expected sensors: ['sensor_44_avg', 'sensor_87_avg', 'sensor_45_avg', 'sensor_48_avg', 'sensor_74_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_44_avg (Fluid level oil container A1): last30=0.0sig, max=2.4sig -> WEAK at 78d
+    sensor_45_avg (Fluid level oil container A2): last30=0.0sig, max=2.6sig -> WEAK at 78d
+    sensor_48_avg (Hydraulic pressure Aggregate System pres): last30=0.4sig, max=0.8sig -> NORMAL
+    sensor_74_avg (Hydraulic oil tank level): last30=0.3sig, max=2.5sig -> WEAK at 119d
+    sensor_87_avg (Motor current gear oil pump A): last30=0.4sig, max=2.5sig -> WEAK at 184d
+
+  [CHECK 2] What did first channel 'drift_freq' actually see?
+    Sensor: sensor_47_avg (Mains frequency OS-side)
+    Drift: 0.7 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 44: Valve in water cooling system was left in wrong position after maintenance 
+First channel: drift_abb at 28d lead | All: gearbox, pitch, drift_freq, drift_hvrp, drift_abb
+================================================================================
+  Keywords found: ['cooling', 'valve']
+  Expected sensors: ['sensor_48_avg', 'sensor_109_avg', 'sensor_74_avg', 'sensor_110_avg', 'sensor_39_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_109_avg (Pressure difference aeration 1st filter ): last30=1.7sig, max=4.1sig -> ANOMALY 3sig at 110d
+    sensor_110_avg (Pressure difference aeration 1st filter ): last30=1.7sig, max=4.1sig -> ANOMALY 3sig at 110d
+    sensor_39_avg (Electrical cabinet ambient temperature): last30=1.4sig, max=3.3sig -> ANOMALY 3sig at 66d
+    sensor_48_avg (Hydraulic pressure Aggregate System pres): last30=0.4sig, max=1.1sig -> NORMAL
+    sensor_74_avg (Hydraulic oil tank level): last30=0.0sig, max=3.1sig -> ANOMALY 3sig at 129d
+
+  [CHECK 2] What did first channel 'drift_abb' actually see?
+    Sensor: sensor_58_avg (ABB-LS Input K4, UL1)
+    Drift: 13.0 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 47: Failure due to Rotorbrake and Hydraulic problemes - Hydraulic pump A disabe
+First channel: drift_batt at 80d lead | All: pitch, drift_24v, drift_filter, drift_freq, drift_abb, drift_batt
+================================================================================
+  Keywords found: ['hydraulic', 'oil', 'brake', 'pump']
+  Expected sensors: ['sensor_44_avg', 'sensor_87_avg', 'sensor_45_avg', 'sensor_48_avg', 'sensor_74_avg', 'sensor_178_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_178_avg (Hydraulic oil tank temperature 1): last30=3.1sig, max=18.4sig -> ANOMALY 3sig at 80d
+    sensor_44_avg (Fluid level oil container A1): last30=2.8sig, max=6.0sig -> ANOMALY 3sig at 46d
+    sensor_45_avg (Fluid level oil container A2): last30=2.4sig, max=4.7sig -> ANOMALY 3sig at 46d
+    sensor_48_avg (Hydraulic pressure Aggregate System pres): last30=6.3sig, max=17.6sig -> ANOMALY 3sig at 10d
+    sensor_74_avg (Hydraulic oil tank level): last30=0.9sig, max=2.5sig -> WEAK at 101d
+    sensor_87_avg (Motor current gear oil pump A): last30=0.7sig, max=1.4sig -> NORMAL
+
+  [CHECK 2] What did first channel 'drift_batt' actually see?
+    Sensor: sensor_13_avg (Battery discharge current axis 2)
+    Drift: 2.0 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 55: Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade control system
+First channel: ensemble at 62d lead | All: gearbox, transformer, hydraulic, generator, pitch, battery_current, ensemble, drift_abb
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['harting', 'plug', 'nacelle/hub', 'damaged', 'ncr20_hub:', 'wiring', 'blade', 'control', 'system']
+
+================================================================================
+EVENT 78: P20_Grounding role brake disc + P20_cover-lightning-main-cabinet-hub
+First channel: ensemble at 45d lead | All: gearbox, generator, ensemble, drift_freq
+================================================================================
+  Keywords found: ['brake']
+  Expected sensors: ['sensor_48_avg', 'sensor_178_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_178_avg (Hydraulic oil tank temperature 1): last30=2.6sig, max=19.4sig -> ANOMALY 3sig at 46d
+    sensor_48_avg (Hydraulic pressure Aggregate System pres): last30=0.1sig, max=0.7sig -> NORMAL
+
+  [CHECK 2] What did first channel 'ensemble' actually see?
+    Ensemble: multiple channels voting together (no single sensor)
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 79: Communication fault BK1120 in NC300
+First channel: ensemble at 64d lead | All: gearbox, hydraulic, generator, pitch, rotor_bearing, ensemble
+================================================================================
+  Keywords found: ['communication']
+  Expected sensors: ['sensor_25_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_25_avg (Current drain 24V nacelle): last30=1.2sig, max=1.4sig -> NORMAL
+
+  [CHECK 2] What did first channel 'ensemble' actually see?
+    Ensemble: multiple channels voting together (no single sensor)
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors show NO anomaly at all
+    -> The 'ensemble' detection may be COINCIDENTAL, not cascaded
+    -> RELIABILITY: LOW - this detection may not be physically connected to the fault
+
+================================================================================
+EVENT 81: Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filter Supply 
+First channel: drift_batt at 74d lead | All: drift_24v, drift_batt
+================================================================================
+  Keywords found: ['converter']
+  Expected sensors: ['sensor_75_avg', 'sensor_58_avg', 'sensor_47_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_47_avg (Mains frequency OS-side): last30=0.2sig, max=4.3sig -> ANOMALY 3sig at 151d
+    sensor_58_avg (ABB-LS Input K4, UL1): last30=0.3sig, max=4.3sig -> ANOMALY 3sig at 151d
+    sensor_75_avg (Maximum reactive power HV converter): last30=0.0sig, max=2.8sig -> WEAK at 104d
+
+  [CHECK 2] What did first channel 'drift_batt' actually see?
+    Sensor: sensor_13_avg (Battery discharge current axis 2)
+    Drift: 0.1 sigma from baseline
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors DO show anomaly (at least weak signal)
+    -> Physical cascade is PLAUSIBLE
+    -> RELIABILITY: MODERATE - detection is real but via indirect pathway
+
+================================================================================
+EVENT 90: COMMUNICATION FAULT BK1120 IN NC300 A2
+First channel: ensemble at 68d lead | All: hydraulic, generator, pitch, hpg, rotor_bearing, ensemble
+================================================================================
+  Keywords found: ['communication']
+  Expected sensors: ['sensor_25_avg']
+
+  [CHECK 1] Do expected sensors show anomaly? (even below 3-sigma threshold)
+    sensor_25_avg (Current drain 24V nacelle): last30=0.8sig, max=1.4sig -> NORMAL
+
+  [CHECK 2] What did first channel 'ensemble' actually see?
+    Ensemble: multiple channels voting together (no single sensor)
+
+  [CHECK 3] Cascade plausibility:
+    RESULT: Expected sensors show NO anomaly at all
+    -> The 'ensemble' detection may be COINCIDENTAL, not cascaded
+    -> RELIABILITY: LOW - this detection may not be physically connected to the fault
+
+================================================================================
+EVENT 91: 23020 : Axis 3 not ready-to-operate
+First channel: drift_freq at 54d lead | All: transformer, generator, pitch, drift_filter, drift_freq, drift_abb
+================================================================================
+  No recognized fault keywords -> cannot verify cascade
+  Description keywords: ['23020', 'axis', 'ready-to-operate']
+
+
+====================================================================================================
+OVERALL RELIABILITY ASSESSMENT
+====================================================================================================
