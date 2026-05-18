@@ -212,8 +212,8 @@ def main():
         m.load_state_dict(torch.load(os.path.join(P8_DIR, f"{ch}_pgnn.pt"))); m.eval()
         p8_m[ch] = m
     
-    total_ch = len(th_m) + len(p8_m) + len(new_pgnn_models) + 1  # +1 for zero-power
-    print(f"  Thermal: {len(th_m)} | Physics: {len(p8_m)} | Expanded: {len(new_pgnn_models)} | ZeroPower: 1")
+    total_ch = len(th_m) + len(p8_m) + len(new_pgnn_models) + 1 + 5  # +1 zero-power, +5 drift sensors
+    print(f"  Thermal: {len(th_m)} | Physics: {len(p8_m)} | Expanded: {len(new_pgnn_models)} | Drift: 5 | ZeroPower: 1")
     print(f"  Total channels: {total_ch}"); sys.stdout.flush()
 
     # ═══════════════════════════════════
@@ -333,6 +333,30 @@ def main():
                     preds[wi] = 1 if p.item() > 0.50 else 0
             all_channel_preds[name] = preds
         
+        # --- SIGMA-DRIFT CHANNELS (5 targeted sensors from FN forensics) ---
+        DRIFT_SENSORS = {
+            "nacelle_24v_current": "sensor_25_avg",    # Event 31: 9.2 sigma at 60d
+            "aeration_filter": "sensor_109_avg",       # Event 81: 8.8 sigma at 60d
+            "gear_oil_pump": "sensor_87_avg",          # Event 49: 6.9 sigma at 6d
+            "mains_frequency": "sensor_47_avg",        # Event 70: 6.9 sigma at 39d
+            "hv_reactive": "sensor_75_avg",            # Event 35: 4.1 sigma at 60d
+        }
+        for dname, dcol in DRIFT_SENSORS.items():
+            if dcol not in df.columns: continue
+            preds = np.zeros(nw)
+            # Compute baseline from first 50% of this dataset (training portion)
+            first_half = df.iloc[:len(df)//2]
+            bl_mean = first_half[dcol].mean()
+            bl_std = first_half[dcol].std()
+            if bl_std < 0.001: continue
+            for wi, st_pos in enumerate(range(0, len(ds)-W+1, S)):
+                end = st_pos + W
+                if end > len(df): continue
+                win_mean = df.iloc[st_pos:end][dcol].mean()
+                sigma = abs(win_mean - bl_mean) / bl_std
+                preds[wi] = 1 if sigma > 3.0 else 0  # 3-sigma threshold
+            all_channel_preds[dname] = preds
+
         # --- ZERO-POWER CHANNEL ---
         zp_preds = np.zeros(nw)
         zp_raw = zero_power_anomaly(df)

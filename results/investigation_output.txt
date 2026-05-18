@@ -1,0 +1,45 @@
+﻿================================================================================
+PART 1: ROOT CAUSE ANALYSIS ÔÇö 5 FALSE NEGATIVES
+================================================================================
+
+------------------------------------------------------------
+EVENT 31: Communication and Pitchfailure - slip ring and Beckhoff card
+------------------------------------------------------------
+  Total samples: 27295 (189.5 days)
+  Overall status: {0: 24000, 3: 2924, 5: 244, 4: 127}
+  Last 30d status: {0: 3484, 3: 789, 5: 40, 4: 7}
+  Last 7d status: {0: 874, 3: 126, 5: 8}
+  Power quartiles: Q1=0.173 Q2=0.352 Q3=0.341 Q4=0.381
+  Suspicious zero-power in last 30d (wind>cut-in, status=0): 390
+
+  TOP 10 DRIFTING SENSORS (last 30d vs first half):
+python : Traceback (most recent call last):
+At line:1 char:32
++ ... THONIOENCODING='utf-8'; python src\deep_investigation.py 2>&1 | Out-F ...
++                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\nijat\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\indexes\base.py", line 
+3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'feature_name'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\nijat\OneDrive\Documents\WIND FIN\WindFarmC-Project\src\deep_investigation.py", line 73, in <module>
+    desc_row = feat[feat["feature_name"].str.contains(c.replace("_avg",""), na=False)]
+                    ~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\nijat\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\frame.py", line 4378, in 
+__getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\nijat\AppData\Local\Programs\Python\Python314\Lib\site-packages\pandas\core\indexes\base.py", line 
+3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'feature_name'
