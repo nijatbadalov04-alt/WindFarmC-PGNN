@@ -1,0 +1,125 @@
+﻿====================================================================================================
+FAULT CLASSIFICATION: Does the CORRECT channel fire for each event?
+====================================================================================================
+
+Event   Actual Fault                                            Early Warning        Matching Channels Found
+----------------------------------------------------------------------------------------------------------------------------------
+4       23020 : Axis 3 not ready-to-operate                     ensemble             NONE [NO MATCH IN CHANNELS]
+5       WEC in failure - current measurement own consumption    drift_24v            drift_24v [FIRST=CORRECT]
+9       PENDING19_PREV_YAW_Grease pump defective                ensemble             drift_pump [CORRECT FIRES LATER]
+11      P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_  generator            NONE [NO MATCH IN CHANNELS]
+12      10115 : Oil level error, two-pump mode + Oil Leakage G  hpg                  hpg, hydraulic [FIRST=CORRECT]
+15      Randomn small failures regarding pitch resulting in a   ensemble             pitch, drift_batt [CORRECT FIRES LATER]
+16      WEC in failure - hub battery charger defect             drift_batt           drift_batt [FIRST=CORRECT]
+18      We had some failures (st├Ârung 24VAC Versorgung Rotorbr  drift_hvrp           NONE [NO MATCH IN CHANNELS]
+28      P20_spinner_carbonbrush defekt + P20_Accumulators_hydr  rotor_bearing        NONE [NO MATCH IN CHANNELS]
+30      Pitch failure - defect fan on pitch motor               ensemble             pitch, drift_batt [CORRECT FIRES LATER]
+31      Communication and Pitchfailure - slip ring and Beckhof  mains_frequency      NONE [NO MATCH IN CHANNELS]
+33      P20_Blade3_Grease Collector missing                     ensemble             NONE [NO MATCH IN CHANNELS]
+35      Turbine had several short standstills (max 8min) with   drift_hvrp           NONE [NO MATCH IN CHANNELS]
+39      15004 : Safety chain relay open + 93005 : Gear oil coo  drift_freq           NONE [NO MATCH IN CHANNELS]
+44      Valve in water cooling system was left in wrong positi  drift_abb            NONE [NO MATCH IN CHANNELS]
+47      Failure due to Rotorbrake and Hydraulic problemes - Hy  drift_batt           NONE [NO MATCH IN CHANNELS]
+49      Failure 2023-04-05 03:30 - defective coupling between   drift_hvrp           drift_pump [CORRECT FIRES LATER]
+55      Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring b  ensemble             NONE [NO MATCH IN CHANNELS]
+66      Pitchfailure - defect Beckhoffcard, Axis 2, rectified   drift_filter         pitch, drift_batt, drift_24v [CORRECT FIRES LATER]
+67      Turbine has some issues with overpressure on the main   drift_batt           transformer [CORRECT FIRES LATER]
+70      21002 : Axis 1 DC-link voltage low, batt                drift_abb            drift_freq, drift_abb [FIRST=CORRECT]
+76      WEC in failure with pitch battery issues - rewiring     drift_batt           pitch, drift_batt, drift_24v [FIRST=CORRECT]
+78      P20_Grounding role brake disc + P20_cover-lightning-ma  ensemble             NONE [NO MATCH IN CHANNELS]
+79      Communication fault BK1120 in NC300                     ensemble             NONE [NO MATCH IN CHANNELS]
+81      Converter Failure from 17.11 12:30 - 18.11. 13:57, Fus  drift_batt           NONE [NO MATCH IN CHANNELS]
+90      COMMUNICATION FAULT BK1120 IN NC300 A2                  ensemble             NONE [NO MATCH IN CHANNELS]
+91      23020 : Axis 3 not ready-to-operate                     drift_freq           NONE [NO MATCH IN CHANNELS]
+
+====================================================================================================
+RESULTS:
+  First channel IS the correct one: 5/27 (18.5%)
+  Correct channel fires but later:  6/27 (22.2%)
+  No matching channel fires at all: 16/27 (59.3%)
+  TOTAL with correct channel:       11/27 (40.7%)
+
+====================================================================================================
+TWO-STAGE DETECTION CAPABILITY:
+  Stage 1 (EARLY WARNING): 'Something is wrong' -> 27/27 detected (100%)
+  Stage 2 (FAULT ID):      'Here is what is wrong' -> 11/27 correctly identified
+
+====================================================================================================
+EVENTS WHERE NO CORRECT CHANNEL FIRES:
+====================================================================================================
+
+  Event 4: 23020 : Axis 3 not ready-to-operate
+    Channels that fired: kci, ensemble
+    No recognized fault keywords in description
+
+  Event 11: P20_DGUV-v3 RCD 28F1 NC310 defective + 0 : P20_Blades_Cabinet Caps missing
+    Channels that fired: gearbox, transformer, hydraulic, generator, pitch, hpg, rotor_bearing, ensemble, drift_24v, drift_freq, drift_hvrp, drift_abb
+    Expected channels (from keywords 'cabinet'): cabinet_temp
+    Missing: cabinet_temp
+
+  Event 18: We had some failures (st├Ârung 24VAC Versorgung Rotorbremse) on the 16th in the a
+    Channels that fired: generator, pitch, ensemble, drift_hvrp
+    No recognized fault keywords in description
+
+  Event 28: P20_spinner_carbonbrush defekt + P20_Accumulators_hydraulic system
+    Channels that fired: rotor_bearing
+    Expected channels (from keywords 'hydraulic, accumulator'): hpg, drift_pump, hydraulic
+    Missing: hpg, drift_pump, hydraulic
+
+  Event 31: Communication and Pitchfailure - slip ring and Beckhoff card
+    Channels that fired: mains_frequency, abb_voltage_l1, ensemble
+    Expected channels (from keywords 'pitch, slip ring, communication, beckhoff'): battery_current, drift_batt, pitch, drift_24v, battery_axis2, nacelle_24v_current
+    Missing: battery_current, drift_batt, pitch, drift_24v, nacelle_24v_current, battery_axis2
+
+  Event 33: P20_Blade3_Grease Collector missing
+    Channels that fired: generator, ensemble
+    Expected channels (from keywords 'grease'): hpg, hydraulic
+    Missing: hpg, hydraulic
+
+  Event 35: Turbine had several short standstills (max 8min) with failure "Schwingungen Umri
+    Channels that fired: ensemble, drift_hvrp
+    No recognized fault keywords in description
+
+  Event 39: 15004 : Safety chain relay open + 93005 : Gear oil cooler bypass valve
+    Channels that fired: generator, pitch, ensemble, drift_filter, drift_freq, drift_abb
+    Expected channels (from keywords 'gear, oil, valve'): gearbox, gear_oil_pump, drift_pump, hydraulic, hpg
+    Missing: gearbox, gear_oil_pump, drift_pump, hydraulic, hpg
+
+  Event 44: Valve in water cooling system was left in wrong position after maintenance actio
+    Channels that fired: gearbox, pitch, drift_freq, drift_hvrp, drift_abb
+    Expected channels (from keywords 'cooling, valve'): cabinet_temp, drift_filter, hpg, hydraulic
+    Missing: cabinet_temp, drift_filter, hpg, hydraulic
+
+  Event 47: Failure due to Rotorbrake and Hydraulic problemes - Hydraulic pump A disabeld, 2
+    Channels that fired: pitch, drift_24v, drift_filter, drift_freq, drift_abb, drift_batt
+    Expected channels (from keywords 'oil, hydraulic, brake, pump'): gearbox, gear_oil_pump, drift_pump, hydraulic, hpg
+    Missing: gearbox, gear_oil_pump, drift_pump, hydraulic, hpg
+
+  Event 55: Harting plug Nacelle/HUB damaged + NCR20_HUB: Wiring blade control system
+    Channels that fired: gearbox, transformer, hydraulic, generator, pitch, battery_current, ensemble, drift_abb
+    Expected channels (from keywords 'wiring'): drift_24v, nacelle_24v_current, kci
+    Missing: drift_24v, nacelle_24v_current, kci
+
+  Event 78: P20_Grounding role brake disc + P20_cover-lightning-main-cabinet-hub
+    Channels that fired: gearbox, generator, ensemble, drift_freq
+    Expected channels (from keywords 'cabinet, brake'): cabinet_temp, hpg, hydraulic
+    Missing: cabinet_temp, hpg, hydraulic
+
+  Event 79: Communication fault BK1120 in NC300
+    Channels that fired: gearbox, hydraulic, generator, pitch, rotor_bearing, ensemble
+    Expected channels (from keywords 'communication'): drift_24v, nacelle_24v_current
+    Missing: drift_24v, nacelle_24v_current
+
+  Event 81: Converter Failure from 17.11 12:30 - 18.11. 13:57, Fuse Filter Supply 
+    Channels that fired: drift_24v, drift_batt
+    Expected channels (from keywords 'converter, filter, fuse'): cabinet_temp, drift_filter, rpfd, kci, drift_freq, aeration_filter, drift_hvrp, hv_reactive
+    Missing: cabinet_temp, drift_filter, rpfd, kci, drift_freq, aeration_filter, drift_hvrp, hv_reactive
+
+  Event 90: COMMUNICATION FAULT BK1120 IN NC300 A2
+    Channels that fired: hydraulic, generator, pitch, hpg, rotor_bearing, ensemble
+    Expected channels (from keywords 'communication'): drift_24v, nacelle_24v_current
+    Missing: drift_24v, nacelle_24v_current
+
+  Event 91: 23020 : Axis 3 not ready-to-operate
+    Channels that fired: transformer, generator, pitch, drift_filter, drift_freq, drift_abb
+    No recognized fault keywords in description
